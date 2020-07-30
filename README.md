@@ -74,3 +74,8 @@ http://eslint.cn/docs/rules/
 [JS](md/JS.md)
 
 [JS_CodeReview](md/JS_CodeReview.md)
+
+
+## 其他
+
+[设计上的基本常识（dubbo)](http://dubbo.apache.org/zh-cn/docs/dev/principals/general-knowledge.html)
