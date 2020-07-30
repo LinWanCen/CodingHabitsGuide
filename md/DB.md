@@ -102,3 +102,11 @@ xml写法：
         System.out.println(System.currentTimeMillis() - time);
     }
 ```
+
+
+
+## 通用
+
+### `@Transactional`不能用在`private`方法
+
+### `prepareStatement`从`1`开始而不是`0`开始
