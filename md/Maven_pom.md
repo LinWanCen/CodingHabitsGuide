@@ -54,3 +54,11 @@ mvn jacoco:prepare-agent test sonar:sonar \
   -Dsonar.login=令牌 \
   -s /usr/share/maven/conf/settings-自定义后缀.xml
 ```
+
+
+### 使用`profile`配合`resource`的`filter`对不同环境做不同配置，大多数配置应在配置平台
+
+
+### 不应使用`systemPath`引用本地包
+
+会使与他有关的项目难以编译
