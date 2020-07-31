@@ -13,7 +13,9 @@ for DevTestOps and DevSecOps
 
 这里的条目需要同时写明这么做的缘由，条目的来源可以是遇到的问题(bug)或者不便的地方。
 
-编写条目前请务必阅读 [谷歌风格指南][styleguide] 中的 [文档风格指南][docguide]
+新增条目前请先搜索 [谷歌风格指南][styleguide] 和 [阿里巴巴Java开发手册][p3c] 等资料是否已经提到。
+
+编写条目前请务必阅读 [谷歌风格指南][styleguide] 中的 [文档风格指南][docguide]。
 
 [docguide]:https://github.com/google/styleguide/blob/gh-pages/docguide/style.md
 
@@ -26,28 +28,26 @@ UnitTest 是开发写在项目里的单元测试的指南
 
 Test 是测试指南
 
+SCM 是版本控制、变更控制等，例如`Git`、`SVN`等，也称为`CVS`或`VCS`
+
 
 ## 具体内容
 
 
 ### 通用
 
-[Code](md/Code.md)
-
 [CodeReview](md/CodeReview.md)
 
-[UnitTest](md/UnitTest.md)
+[Test](md/Test.md)⛔
 
-[Test](md/Test.md)
+[SCM](md/SCM.md)
 
 
 ### Java
 
 [Java](md/Java.md)
 
-[Java_CodeReview](md/Java_CodeReview.md)
-
-[Java_UnitTest](md/Java_UnitTest.md)
+[Java_UnitTest](md/Java_UnitTest.md)⛔
 
 [Maven_pom](md/Maven_pom.md)
 
@@ -58,24 +58,17 @@ Test 是测试指南
 
 [SQL](md/SQL.md)
 
-[SQL_CodeReview](md/SQL_CodeReview.md)
-
-
-### Vue
-
-https://cn.vuejs.org/v2/style-guide/
-
 
 ### JS
 JS(JavaScript) / ES5(ECMAScript 5.0) / ES6
 
-http://eslint.cn/docs/rules/
+[ES lint](http://eslint.cn/docs/rules/)
 
-[JS](md/JS.md)
-
-[JS_CodeReview](md/JS_CodeReview.md)
+[Vue 风格指南](https://cn.vuejs.org/v2/style-guide/)
 
 
-## 其他
+### 设计
 
-[设计上的基本常识（dubbo)](http://dubbo.apache.org/zh-cn/docs/dev/principals/general-knowledge.html)
+[设计上的基本常识 (dubbo)](http://dubbo.apache.org/zh-cn/docs/dev/principals/general-knowledge.html)
+
+[使用 PlantUML 编写时序图等理清关系](https://plantuml.com/zh/sequence-diagram)
