@@ -6,9 +6,6 @@
 
 ### `Git`可以按目录拉取，可以拆分并保留提交记录
 
-### 使用`Git`子模块管理多个相关组件的项目
-
-https://git-scm.com/docs/gitsubmodules
 
 
 ## 心得
