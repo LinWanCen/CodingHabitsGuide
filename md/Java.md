@@ -82,3 +82,37 @@ https://phauer.com/2020/package-by-feature/
 
 
 ### 使用`package-info.java`配合文档注释说明包的作用
+
+
+
+## 部署
+
+### [推荐]`JVM`参数配置打印堆内存不足打印内存快照，便于解决OOM
+```
+-XX:+HeapDumpOutOfMemoryError
+-XX:HeapDumpPath=../logs/heapdump.hprof
+```
+较老的`tomcat`项目可以在`bin/catalina.sh`中配置
+```shell
+JAVA_OPTS="$JAVA_OPTS -XX:+HeapDumpOutOfMemoryError -XX:HeapDumpPath=../logs/heapdump.hprof"
+```
+
+### [推荐]测试环境开启远程调试
+
+较老的`tomcat`项目可以编辑 tomcat/bin/catalina.sh\
+把 localhost 改 0.0.0.0，否则 tomcat远程调试只能本机访问
+```
+if [ "$1" = "jpda" ] ; then
+  if [ -z "$JPDA_TRANSPORT" ]; then
+    JPDA_TRANSPORT="dt_socket"
+  fi
+  if [ -z "$JPDA_ADDRESS" ]; then
+    JPDA_ADDRESS="localhost:8000"
+  fi
+```
+重新启动
+```
+./shutdown.bat
+./catalina.sh jpda start
+```
+（助记：java 的 j，pda掌上电脑)
