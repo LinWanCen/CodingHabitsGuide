@@ -62,3 +62,35 @@ mvn jacoco:prepare-agent test sonar:sonar \
 ### 不应使用`systemPath`引用本地包
 
 会使与他有关的项目难以编译
+
+
+### `maven-compiler-plugin`添加`jar`路径时必须添加`${project.basedir}`，否则在`Linux`下可能会找不到包
+
+3.1 前
+```
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+	<version>3.0</version>
+        <configuration>
+          <compilerArguments>
+            <extdirs>${project.basedir}/src/main/webapp/WEB-INF/lib</extdirs>
+          </compilerArguments>
+        </configuration>
+      </plugin>
+```
+3.1 后（最新版看http://maven.apache.org/plugins/maven-compiler-plugin/usage.html）
+```
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <compilerArgs>
+            <arg>-verbose</arg>
+            <arg>-Xlint:unchecked</arg>
+            <arg>-Xlint:deprecation</arg>
+            <arg>-extdirs</arg>
+            <arg>${project.basedir}/src/main/resources/lib</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+```
