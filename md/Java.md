@@ -87,14 +87,16 @@ https://phauer.com/2020/package-by-feature/
 
 ## 部署
 
-### [推荐]`JVM`参数配置打印堆内存不足打印内存快照，便于解决OOM
+### [推荐]`JVM`参数配置打印堆内存不足打印内存快照，若设置输出文件夹需存在，便于解决OOM
+堆文件 Dump .hprof(Heap Profile) 格式：java_pid*.hprof\
+可以用 JDK 自带的 jvisualvm.exe 查看
 ```
--XX:+HeapDumpOutOfMemoryError
--XX:HeapDumpPath=../logs/heapdump.hprof
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:HeapDumpPath=../logs
 ```
 较老的`tomcat`项目可以在`bin/catalina.sh`中配置
 ```shell
-JAVA_OPTS="$JAVA_OPTS -XX:+HeapDumpOutOfMemoryError -XX:HeapDumpPath=../logs/heapdump.hprof"
+JAVA_OPTS="$JAVA_OPTS -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=../logs"
 ```
 
 ### [推荐]测试环境开启远程调试
