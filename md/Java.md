@@ -3,7 +3,7 @@
 ## 代码
 
 ### 常量数组和枚举单独成行，最后一项也加逗号
-https://github.com/alibaba/p3c/issues/563
+[https://github.com/alibaba/p3c/issues/563](https://github.com/alibaba/p3c/issues/563)
 
 
 ### 数字使用下划线增加可读性
@@ -22,9 +22,9 @@ long maxLong = 0x7fff_ffff_ffff_ffffL;
 public protected private abstract default static final transient volatile synchronized native strictfp
 ```
 
-https://google.github.io/styleguide/javaguide.html#s4.8.7-modifiers
+[https://google.github.io/styleguide/javaguide.html#s4.8.7-modifiers](https://google.github.io/styleguide/javaguide.html#s4.8.7-modifiers)
 
-https://github.com/google/styleguide/blob/gh-pages/javaguide.html
+[https://github.com/google/styleguide/blob/gh-pages/javaguide.html](https://github.com/google/styleguide/blob/gh-pages/javaguide.html)
 
 
 ### `replaceAll()`和`split()`的参数是正则表达式，不需要正则替换时优先使用`replace()`(也是替换所有)，正则表达式应预编译
@@ -72,7 +72,7 @@ public class IncludeTest {
 
 ### 按功能划分包而不是按层划分包
 
-https://phauer.com/2020/package-by-feature/
+[https://phauer.com/2020/package-by-feature/](https://phauer.com/2020/package-by-feature/)
 
 
 ### 不应该在一个文件中有多个方法，除非方法之间没有依赖，或者由上到下依赖

@@ -4,7 +4,7 @@
 
 简称可以是中文或英文，这样在`Maven`日志、`SonarQube`报告、`IDEA`侧边栏等显示都更为友好
 
-根据官方文档 https://maven.apache.org/pom.html#more-project-information
+根据官方文档 [https://maven.apache.org/pom.html#more-project-information](https://maven.apache.org/pom.html#more-project-information)
 
 ```xml
   <name>开发们常用的简称</name>
@@ -78,7 +78,9 @@ mvn jacoco:prepare-agent test sonar:sonar \
         </configuration>
       </plugin>
 ```
-3.1 后（最新版看http://maven.apache.org/plugins/maven-compiler-plugin/usage.html）
+3.1 后
+(最新版看
+[http://maven.apache.org/plugins/maven-compiler-plugin/usage.html](http://maven.apache.org/plugins/maven-compiler-plugin/usage.html))
 ```
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
