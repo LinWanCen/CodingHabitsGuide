@@ -4,6 +4,8 @@ for DevTestOps and DevSecOps
 本指南是对 [谷歌风格指南][styleguide] 和 [阿里巴巴Java开发手册][p3c] 等指南的补充，
 请在阅读本指南的同时请阅读这些指南。
 
+因为域名污染进不了 xxx.github.io 的同学请修改 DNS 后刷新缓存，参考： https://www.zhihu.com/question/411565676
+
 [styleguide]:https://github.com/google/styleguide
 [p3c]:https://github.com/alibaba/p3c
 
