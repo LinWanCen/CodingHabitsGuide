@@ -52,23 +52,13 @@ import javax.validation.constraints.NotNull
 如果进去后默认显示最近作业，又没有充分优化，就可能需要卡一会儿
 
 
-### 对表做特殊修改时应做备份，删除表可以用重命名的方式，慎用`TRUNCATE`(因为是`DDL`语句没有事务)
-
-`Oracle`中`insert ... select`需用注释提高性能
-```sql
-insert ... select /*+ no_merge(p) use_hash(p) */  ...
-```
-
-`PostgreSQL`事务可以包含`DML`、`DDL`、`DCL`，可以使用重命名表的方式备份清理表不影响业务
-
-
 ### 数据量大的查询需使用游标查询，并使用流式读，避免 数据库服务器表空间爆满 和 程序(堆)内存不足错误
 
 `OOM: OutOfMemoryError`(堆)内存不足错误，对应`SOF: StackOverflowError`栈溢出错误
 
 xml写法：
 ```xml
-  <!-- fetchSize="-2147483648" 是 流式读 避免 数据库服务器表空间爆满 和 程序堆内存溢出 -->
+  <!-- fetchSize="-2147483648" 是 流式读 避免 数据库服务器表空间爆满 和 程序堆内存不足错误 -->
   <select id="" fetchSize="-2147483648">
     SELECT * FROM TEST_TABLE
   </select>
@@ -78,7 +68,7 @@ xml写法：
 ```java
     /**
      * 调用需要加 @Transactional 注解，否则会立即关闭连接导致游标报 A Cursor is already closed.
-     * <br/>fetchSize="-2147483648" 是 流式读 避免 数据库服务器表空间爆满 和 程序堆内存溢出
+     * <br/>fetchSize="-2147483648" 是 流式读 避免 数据库服务器表空间爆满 和 程序堆内存不足错误
      */
     @Options(fetchSize = Integer.MIN_VALUE)
     @Select("SELECT * FROM TEST_TABLE")
@@ -116,6 +106,16 @@ xml写法：
         System.out.println(System.currentTimeMillis() - time);
     }
 ```
+
+
+### 对表做特殊修改时应做备份，删除表可以用重命名的方式，慎用`TRUNCATE`(因为是`DDL`语句没有事务)
+
+`Oracle`中`insert ... select`需用注释提高性能
+```sql
+insert ... select /*+ no_merge(p) use_hash(p) */  ...
+```
+
+`PostgreSQL`事务可以包含`DML`、`DDL`、`DCL`，可以使用重命名表的方式备份清理表不影响业务
 
 
 
