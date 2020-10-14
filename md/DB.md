@@ -101,7 +101,7 @@ ORDER BY col.table_name, col.ordinal_position;
 写数据库语句时看表结构是个好习惯，如果没有命中需注释说明原因。
 
 
-### MySQL 跟 Oracle/PostgreSQL 不同，行锁须命中索引，没有命中会锁表。
+### MySQL 跟 Oracle/PostgreSQL 不同，行锁须命中索引，没有命中会锁表
 
 
 ### 避免动态`SQL`里出现全表查询
