@@ -1,5 +1,9 @@
 # SQL
 
+### `SQL`也是代码的一部分，应该提交到 Git 中
+
+按 Maven 规范放入 `src\main\scripts`(`${project.build.scriptSourceDirectory}`)
+
 
 ### `INSERT`语句建议在工具上编辑好值后使用将所选行导出为`INSERT`语句的方式
 
