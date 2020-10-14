@@ -8,7 +8,7 @@
 
 ### 设计表时字段默认`not null`, 减少判空与空指针异常
 
-可空字段必须有明确说明原因，否则都必须非空，在特殊情况下程序疏漏可能插入空值，从而导致一系列问题。
+可空字段必须明确说明原因，否则都必须非空，在特殊情况下程序疏漏可能插入空值，从而导致一系列问题。
 
 可空字段漏了判空会导致空指针异常，需要频繁判空。
 
@@ -65,7 +65,7 @@ SELECT TABLE_NAME, TABLE_COMMENT FROM information_schema.TABLES WHERE TABLE_SCHE
 SELECT TABLE_NAME,COLUMN_NAME, COLUMN_COMMENT FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '库名' AND COLUMN_COMMENT = '';
 ```
 
-PostgreSQL: 类似 Oracle，详见：
+PostgreSQL 类似 Oracle，详见：
 [http://postgres.cn/docs/12/sql-comment.html](http://postgres.cn/docs/12/sql-comment.html)
 ```sql
 -- 查询所有没注释的表
@@ -98,7 +98,10 @@ ORDER BY col.table_name, col.ordinal_position;
 
 ### 大规模查询下`WHERE`/`ON`的字段需要命中索引
 
-写数据库语句时看表结构是个好习惯，如果没有命中需注释说明原因
+写数据库语句时看表结构是个好习惯，如果没有命中需注释说明原因。
+
+
+### MySQL 跟 Oracle/PostgreSQL 不同，行锁须命中索引，没有命中会锁表。
 
 
 ### 避免动态`SQL`里出现全表查询
