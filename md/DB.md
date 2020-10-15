@@ -93,6 +93,65 @@ ORDER BY col.table_name, col.ordinal_position;
 对影响条数的判断可以避免拼接条件组合问题等情况导致全表更新/删除
 
 
+### 表的 加锁查询/更新 顺序需一致，避免死锁导致性能问题
+
+在类似非分布式系统互相转账的场景中，先锁卡号/账号小的一方
+
+
+MySQL
+```MySQL
+-- 查看死锁（控制台上才能带 \G）
+show engine innodb status \G;
+
+-- 查锁表
+show OPEN TABLES where In_use > 0;
+
+-- 查进程
+show processlist;
+```
+
+Oracle
+```
+-- 查锁
+select t2.USERNAME,
+       t2.SID,
+       t2.SERIAL#,
+       t3.OBJECT_NAME,
+       t2.OSUSER,
+       t2.MACHINE,
+       t2.PROGRAM,
+       t2.LOGON_TIME,
+       t2.COMMAND,
+       t2.LOCKWAIT,
+       decode(t1.LOCKED_MODE,
+           '1', '1-空',
+           '2', '2-行共享(RS)：共享表锁',
+           '3', '3-行独占(RX)：用于行的修改',
+           '4', '4-共享锁(S)：阻止其他DML操作',
+           '5', '5-共享行独占(SRX)：阻止其他事务操作',
+           '6', '6-独占(X)：独立访问使用'
+           ) AS TYPE_DESCRIPTION,
+       t4.SQL_TEXT
+from "PUBLIC".V$LOCKED_OBJECT t1
+         join "PUBLIC".V$SESSION t2 on t1.SESSION_ID = t2.SID
+         join "PUBLIC".DBA_OBJECTS t3 on t1.OBJECT_ID = t3.OBJECT_ID
+         left join "PUBLIC".V$SQL t4 on t2.SQL_HASH_VALUE = t4.HASH_VALUE
+order by t2.LOGON_TIME;
+```
+
+PostgreSQL
+```SQL
+-- 查锁
+select * from pg_locks
+-- 查询被检测到的死锁数量
+select * from pg_stat_database
+```
+
+[http://postgres.cn/docs/12/view-pg-locks.html](http://postgres.cn/docs/12/view-pg-locks.html)
+
+[http://postgres.cn/docs/12/monitoring-stats.html#PG-STAT-DATABASE-VIEW](http://postgres.cn/docs/12/monitoring-stats.html#PG-STAT-DATABASE-VIEW)
+
+
 
 ## 查询
 
@@ -188,4 +247,26 @@ insert ... select /*+ no_merge(p) use_hash(p) */  ...
 
 ### `@Transactional`不能用在`private`方法
 
+
 ### `prepareStatement`从`1`开始而不是`0`开始
+
+
+### 调用外部服务与持有数据库连接不要放一起，否则调用时间较长时会导致长时间占用连接
+
+而且在`SELECT ... FOR UPDATE`或`UPDATE`后会导致长时间锁表
+
+
+### 阿里 Druid 连接池即使数据库连接超时释放了，连接池连接没释放也会导致性能问题，必须注意连接的释放
+
+排查方法：
+```xml
+<!-- 超过时间限制是否回收 -->  
+<property name="removeAbandoned" value="true" />  
+<!-- 超时时间；单位为秒，180秒=3分钟   -->
+<property name="removeAbandonedTimeout" value="180" />  
+<!-- removeAbandoned 打印堆栈 -->
+<property name="logAbandoned" value="true" />
+```
+日志里查找 removeAbandoned 找到错误堆栈
+
+
