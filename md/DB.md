@@ -27,63 +27,7 @@ import javax.validation.constraints.NotNull
 
 ### 开发测试环境的表与字段必须有注释
 
-Oracle
-```sql
--- 添加表注释
-COMMENT ON TABLE TEST.COMMON_SEQ IS '序号表';
-
--- 添加列注释
-COMMENT ON COLUMN TEST.COMMON_SEQ.APP_CODE IS '应用编码';
-
--- 查询所有没注释的表
-SELECT * FROM SYS.ALL_TAB_COMMENTS WHERE OWNER = '库名' AND COMMENTS IS NULL;
-
--- 查询所有没注释的列
-SELECT * FROM SYS.ALL_COL_COMMENTS WHERE OWNER = '库名' AND COMMENTS IS NULL;
-```
-
-MySQL
-```MySQL
--- 创建时添加注释
-CREATE TABLE `COMMON_SEQ`
-(
-    `APP_CODE` char(6) NOT NULL COMMENT '应用编码',
-    UNIQUE KEY `COMMON_SEQ_APP_CODE_uindex` (`APP_CODE`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='流水号表';
-
--- 添加表注释
-ALTER TABLE COMMON_SEQ COMMENT '流水号表';
-
--- 添加列注释
-ALTER TABLE COMMON_SEQ MODIFY `APP_CODE` char(6) NOT NULL COMMENT '应用编码';
-
--- 查询所有没注释的表
-SELECT TABLE_NAME, TABLE_COMMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = '库名' AND TABLE_COMMENT = '';
-
--- 查询所有没注释的列
-SELECT TABLE_NAME,COLUMN_NAME, COLUMN_COMMENT FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '库名' AND COLUMN_COMMENT = '';
-```
-
-PostgreSQL 类似 Oracle，详见：
-[http://postgres.cn/docs/12/sql-comment.html](http://postgres.cn/docs/12/sql-comment.html)
-```sql
--- 查询所有没注释的表
-SELECT tb.table_name, d.description
-FROM information_schema.tables tb
-         JOIN pg_class c ON c.relname = tb.table_name
-         LEFT JOIN pg_description d ON d.objoid = c.oid AND d.objsubid = '0'
-WHERE tb.table_schema = 'test_schema' AND d.description IS NULL;
-
--- 查询所有没注释的列
-SELECT col.table_name, col.column_name, col.ordinal_position AS o, d.description
-FROM information_schema.columns col
-         JOIN pg_class c ON c.relname = col.table_name
-         LEFT JOIN pg_description d ON d.objoid = c.oid AND d.objsubid = col.ordinal_position
-WHERE col.table_schema = 'test_schema' AND description IS NULL
-ORDER BY col.table_name, col.ordinal_position;
-```
-
+[DB_COMMENT.md](DB_COMMENT.md)
 
 
 ## 更新
@@ -97,60 +41,7 @@ ORDER BY col.table_name, col.ordinal_position;
 
 在类似非分布式系统互相转账的场景中，先锁卡号/账号小的一方
 
-
-MySQL
-```MySQL
--- 查看死锁（控制台上才能带 \G）
-show engine innodb status \G;
-
--- 查锁表
-show OPEN TABLES where In_use > 0;
-
--- 查进程
-show processlist;
-```
-
-Oracle
-```
--- 查锁
-select t2.USERNAME,
-       t2.SID,
-       t2.SERIAL#,
-       t3.OBJECT_NAME,
-       t2.OSUSER,
-       t2.MACHINE,
-       t2.PROGRAM,
-       t2.LOGON_TIME,
-       t2.COMMAND,
-       t2.LOCKWAIT,
-       decode(t1.LOCKED_MODE,
-           '1', '1-空',
-           '2', '2-行共享(RS)：共享表锁',
-           '3', '3-行独占(RX)：用于行的修改',
-           '4', '4-共享锁(S)：阻止其他DML操作',
-           '5', '5-共享行独占(SRX)：阻止其他事务操作',
-           '6', '6-独占(X)：独立访问使用'
-           ) AS TYPE_DESCRIPTION,
-       t4.SQL_TEXT
-from "PUBLIC".V$LOCKED_OBJECT t1
-         join "PUBLIC".V$SESSION t2 on t1.SESSION_ID = t2.SID
-         join "PUBLIC".DBA_OBJECTS t3 on t1.OBJECT_ID = t3.OBJECT_ID
-         left join "PUBLIC".V$SQL t4 on t2.SQL_HASH_VALUE = t4.HASH_VALUE
-order by t2.LOGON_TIME;
-```
-
-PostgreSQL
-```SQL
--- 查锁
-select * from pg_locks
--- 查询被检测到的死锁数量
-select * from pg_stat_database
-```
-
-[http://postgres.cn/docs/12/view-pg-locks.html](http://postgres.cn/docs/12/view-pg-locks.html)
-
-[http://postgres.cn/docs/12/monitoring-stats.html#PG-STAT-DATABASE-VIEW](http://postgres.cn/docs/12/monitoring-stats.html#PG-STAT-DATABASE-VIEW)
-
+[DB_LOCK.md](DB_LOCK.md)
 
 
 ## 查询
