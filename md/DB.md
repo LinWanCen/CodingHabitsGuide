@@ -43,6 +43,10 @@ import javax.validation.constraints.NotNull
 
 [DB_LOCK.md](DB_LOCK.md)
 
+阿里规约 一、 编程规约 (七) 并发处理\
+8.【强制】对多个资源、数据库表、对象同时加锁时，需要保持一致的加锁顺序，否则可能会造成死锁。
+
+
 
 ## 查询
 
