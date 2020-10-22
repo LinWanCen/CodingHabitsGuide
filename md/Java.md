@@ -27,7 +27,11 @@ public protected private abstract default static final transient volatile synchr
 [https://github.com/google/styleguide/blob/gh-pages/javaguide.html](https://github.com/google/styleguide/blob/gh-pages/javaguide.html)
 
 
-### `replaceAll()`和`split()`的参数是正则表达式，不需要正则替换时优先使用`replace()`(也是替换所有)，正则表达式应预编译
+### 不需要正则替换时优先使用`replace()`(也是替换所有)
+
+`replaceAll()`和`split()`的参数是正则表达式
+
+### 正则表达式应预编译
 
 ### `String.format`比直接+拼接效率低很多，应避免使用
 
@@ -87,7 +91,7 @@ public class IncludeTest {
 
 ## 部署
 
-### [推荐]`JVM`参数配置打印堆内存不足打印内存快照，若设置输出文件夹需存在，便于解决OOM
+### 【推荐】`JVM`参数配置打印堆内存不足打印内存快照，若设置输出文件夹需存在，便于解决OOM
 堆文件 Dump .hprof(Heap Profile) 格式：java_pid*.hprof\
 可以用 JDK 自带的 jvisualvm.exe 查看
 ```
@@ -99,7 +103,7 @@ public class IncludeTest {
 JAVA_OPTS="$JAVA_OPTS -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=../logs"
 ```
 
-### [推荐]测试环境开启远程调试
+### 【推荐】测试环境开启远程调试
 
 较老的`tomcat`项目可以编辑 tomcat/bin/catalina.sh\
 把 localhost 改 0.0.0.0，否则 tomcat远程调试只能本机访问
