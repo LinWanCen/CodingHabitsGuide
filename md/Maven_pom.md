@@ -4,7 +4,7 @@
 
 简称可以是中文或英文，这样在`Maven`日志、`SonarQube`报告、`IDEA`侧边栏等显示都更为友好
 
-根据官方文档 [https://maven.apache.org/pom.html#more-project-information](https://maven.apache.org/pom.html#more-project-information)
+根据官方文档 https://maven.apache.org/pom.html#more-project-information
 
 ```xml
   <name>开发们常用的简称</name>
@@ -70,8 +70,7 @@ spring-boot-starter-parent 里仅对必要的做了设置，框架源代码如�
       </plugin>
 ```
 3.1 后
-(最新版看
-[http://maven.apache.org/plugins/maven-compiler-plugin/usage.html](http://maven.apache.org/plugins/maven-compiler-plugin/usage.html))
+(最新 version 可以参考 http://maven.apache.org/plugins/maven-compiler-plugin/usage.html)
 ```xml
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -137,7 +136,7 @@ spring-boot-starter-parent 里仅对必要的做了设置，框架源代码如�
 
 ### 聚合项目和父项目是不同的概念，聚合项目对 module 是没有影响的，可以创建聚合项目优化编译打包结构
 
-[https://maven.apache.org/pom.html#A_final_note_on_Inheritance_v._Aggregation](https://maven.apache.org/pom.html#A_final_note_on_Inheritance_v._Aggregation)
+https://maven.apache.org/pom.html#A_final_note_on_Inheritance_v._Aggregation
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

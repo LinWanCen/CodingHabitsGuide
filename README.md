@@ -82,3 +82,5 @@ Vue 风格指南：https://cn.vuejs.org/v2/style-guide/
 [软件配置管理 SCM（版本控制&变更控制）](md/SCM.md)
 
 语义化版本 2.0.0：https://semver.org/lang/zh-CN/
+
+Git Maven 项目忽略配置参考：[.gitignore](.gitignore)

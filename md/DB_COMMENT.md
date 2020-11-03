@@ -93,7 +93,7 @@ echo $rows_col
 
 ## PostgreSQL
 添加方法类似 Oracle，详见：
-[http://postgres.cn/docs/12/sql-comment.html](http://postgres.cn/docs/12/sql-comment.html)
+http://postgres.cn/docs/12/sql-comment.html
 ```sql
 -- 查询所有没注释的表
 SELECT tb.table_name, d.description

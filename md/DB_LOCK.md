@@ -51,6 +51,6 @@ select * from pg_locks
 select * from pg_stat_database
 ```
 
-[http://postgres.cn/docs/12/view-pg-locks.html](http://postgres.cn/docs/12/view-pg-locks.html)
+http://postgres.cn/docs/12/view-pg-locks.html
 
-[http://postgres.cn/docs/12/monitoring-stats.html#PG-STAT-DATABASE-VIEW](http://postgres.cn/docs/12/monitoring-stats.html#PG-STAT-DATABASE-VIEW)
+http://postgres.cn/docs/12/monitoring-stats.html#PG-STAT-DATABASE-VIEW
