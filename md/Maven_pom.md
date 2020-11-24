@@ -17,8 +17,7 @@
 ```xml
   <artifactId>spring-boot-starter-parent</artifactId>
   <name>Spring Boot Starter Parent</name>
-  <description>Parent pom providing dependency and plugin management for applications
-		built with Maven</description>
+  <description>Parent pom providing dependency and plugin management for applications built with Maven</description>
 ```
 
 
@@ -61,7 +60,7 @@ spring-boot-starter-parent 里仅对必要的做了设置，框架源代码如�
 ```xml
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-	<version>3.0</version>
+        <version>3.0</version>
         <configuration>
           <compilerArguments>
             <extdirs>${project.basedir}/src/main/webapp/WEB-INF/lib</extdirs>
@@ -86,7 +85,21 @@ spring-boot-starter-parent 里仅对必要的做了设置，框架源代码如�
         </configuration>
       </plugin>
 ```
+参数参考：https://docs.oracle.com/javase/6/docs/technotes/tools/windows/javac.html
 
+#### -verbose
+详细输出。这包括有关加载的每个类和编译的每个源文件的信息。
+
+#### -Xlint:unchecked
+为 Java 语言规范规定的未选中转换警告提供更多详细信息。
+
+#### -deprecation
+显示已弃用成员或类的每次使用或重写的说明。\
+如果没有-deprecation，javac显示使用或重写弃用成员或类的源文件的摘要。\
+-deprecation是 -Xlint:deprecation 的简写。
+
+#### -extdirs directories
+针对指定的扩展目录进行编译。目录是目录的分号分隔列表。将搜索指定目录中的每个 JAR 存档以搜索类文件。
 
 ### 使用`profile`配合`resource`的`filter`对不同环境做不同配置，大多数配置应在配置平台
 
