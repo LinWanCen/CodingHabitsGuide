@@ -7,17 +7,21 @@
 根据官方文档 https://maven.apache.org/pom.html#more-project-information
 
 ```xml
+<project>
   <name>开发们常用的简称</name>
   <description>核心功能和在整个架构中的作用</description>
   <inceptionYear>成立年份</inceptionYear>
   <url>链接</url>
+</project>
 ```
 
 `Spring Boot`
 ```xml
+<project>
   <artifactId>spring-boot-starter-parent</artifactId>
   <name>Spring Boot Starter Parent</name>
   <description>Parent pom providing dependency and plugin management for applications built with Maven</description>
+</project>
 ```
 
 
@@ -104,6 +108,7 @@ spring-boot-starter-parent 里仅对必要的做了设置，框架源代码如�
 ### 使用`profile`配合`resource`的`filter`对不同环境做不同配置，大多数配置应在配置平台
 
 ```xml
+<project>
   <properties>
     <maven.resources.overwrite>true</maven.resources.overwrite>
   </properties>
@@ -144,6 +149,7 @@ spring-boot-starter-parent 里仅对必要的做了设置，框架源代码如�
       </properties>
     </profile>
   </profiles>
+</project>
 ```
 
 
@@ -230,3 +236,63 @@ http://maven.apache.org/plugins/maven-checkstyle-plugin/
 
 SonarQube 的使用可以参考：\
 https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/
+
+
+### 不上传中央仓库的包用命令行代替 distributionManagement
+
+```shell script
+mvn deploy -DaltDeploymentRepository=deploymentRepo::default::发布URL
+```
+
+使用脚本配置发布 URL，而且 URL 应使用变量：
+- Jenkins：系统管理 -> 系统配置 -> 全局属性 -> 环境变量
+- Jenkins：系统管理 -> 节点管理 -> 配置从节点 -> 节点属性 -> 环境变量
+- GitLab CI：群组设置 -> CI/CD -> 变量
+
+
+下面这种方式建议在发布中央仓库时才使用，避免仓库迁移等情况需要修改多个 pom.xml
+
+发布中央仓库配置：
+```xml
+  <!-- 发布管理 -->
+  <distributionManagement>
+    <repository>
+      <id>deploymentRepo</id>
+      <name>Nexus Release Repository</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+    <snapshotRepository>
+      <id>deploymentRepo</id>
+      <name>Nexus Snapshot Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+```
+
+若要在 pom.xml 中设置私服：
+```xml
+  <!-- 发布管理 -->
+  <distributionManagement>
+    <repository>
+      <id>deploymentRepo</id>
+      <url>http://私服地址端口/repository/company_or_app_name_Release/</url>
+    </repository>
+    <snapshotRepository>
+      <id>deploymentRepo</id>
+      <url>http://私服地址端口/repository/company_or_app_name_Snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
+```
+
+deploymentRepo 是 Maven 配置文件示例的 server id，不要修改，便于统一设置上传密码
+
+setting.xml：
+```xml
+  <servers>
+    <server>
+      <id>deploymentRepo</id>
+      <username>admin</username>
+      <password>admin</password>
+    </server>
+  </servers>
+```
