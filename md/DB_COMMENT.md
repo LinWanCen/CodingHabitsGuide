@@ -14,7 +14,7 @@ SELECT * FROM SYS.ALL_TAB_COMMENTS WHERE OWNER = '库名' AND COMMENTS IS NULL;
 -- 查询所有没注释的列
 SELECT * FROM SYS.ALL_COL_COMMENTS WHERE OWNER = '库名' AND COMMENTS IS NULL;
 ```
-jenkins
+Jenkins
 ```shell
 echo "set echo off" > export_html.sql
 echo "set feedback on" >> export_html.sql
@@ -59,7 +59,7 @@ SELECT TABLE_NAME, TABLE_COMMENT FROM information_schema.TABLES WHERE TABLE_SCHE
 -- 查询所有没注释的列
 SELECT TABLE_NAME,COLUMN_NAME, COLUMN_COMMENT FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '库名' AND COLUMN_COMMENT = '';
 ```
-### Jenkins
+Jenkins
 ```shell
 echo '<style> table {border-collapse: collapse;}  th, td {border: 1px solid lightgray;padding-left: 5px;padding-right: 5px;}</style><table>' >\
 库名-not_comment_table.html
