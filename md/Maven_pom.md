@@ -84,7 +84,7 @@ spring-boot-starter-parent 里仅对必要的做了设置，框架源代码如�
             <arg>-Xlint:unchecked</arg>
             <arg>-Xlint:deprecation</arg>
             <arg>-extdirs</arg>
-            <arg>${project.basedir}/src/main/resources/lib</arg>
+            <arg>${project.basedir}/src/main/webapp/WEB-INF/lib</arg>
           </compilerArgs>
         </configuration>
       </plugin>
