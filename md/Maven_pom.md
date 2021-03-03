@@ -60,7 +60,7 @@ spring-boot-starter-parent 里仅对必要的做了设置，框架源代码如�
 
 ### `maven-compiler-plugin`添加`jar`路径时必须添加`${project.basedir}`，否则在`Linux`下可能会找不到包
 
-3.1 前
+3.1 前，注意这里是`compilerArguments`，后面有个`s`
 ```xml
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -89,7 +89,7 @@ spring-boot-starter-parent 里仅对必要的做了设置，框架源代码如�
         </configuration>
       </plugin>
 ```
-参数参考：https://docs.oracle.com/javase/6/docs/technotes/tools/windows/javac.html
+参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html
 
 #### -verbose
 详细输出。这包括有关加载的每个类和编译的每个源文件的信息。
