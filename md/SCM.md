@@ -4,6 +4,10 @@
 
 ### `SVN`迁移`Git`可以保留提交记录，尽量保留提交记录
 
+```shell script
+git svn clone svn地址 --username=用户名
+```
+
 ### `Git`可以按目录拉取，可以拆分并保留提交记录
 
 ### 使用`.gitkeep`文件在`Git`中保留空文件夹
