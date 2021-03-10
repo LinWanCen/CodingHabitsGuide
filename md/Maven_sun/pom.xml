@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>公司域名倒序</groupId>
+  <artifactId>项目包名</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <name>${project.artifactId} | 中文简称</name>
+  <description>中文全称 英文全称</description>
+
+  <packaging>war</packaging>
+
+  <properties>
+    <!-- 分系统加载 com.sun 的包时用不同的分隔符 -->
+    <osType>not win</osType>
+    <filesSeparator>:</filesSeparator>
+    <!-- 分环境打包用参数 -->
+    <envSuffix>dev</envSuffix>
+    <maven.resources.overwrite>true</maven.resources.overwrite>
+
+    <java.version>1.7</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <!--<maven.compiler.compilerVersion>${java.version}</maven.compiler.compilerVersion>-->
+
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>javax.servlet.jsp-api</artifactId>
+      <version>2.3.3</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <!-- 分环境打包 -->
+    <resources>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>${basedir}/src/main/resources_${envSuffix}</directory>
+      </resource>
+    </resources>
+
+    <plugins>
+
+      <!-- jar 都迁移 maven dependencies 的话可以取消这个插件 -->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <compilerArgs>
+            <arg>-bootclasspath</arg>
+            <arg>${env.JAVA_HOME}/jre/lib/rt.jar${filesSeparator}${env.JAVA_HOME}/jre/lib/jce.jar</arg>
+            <arg>-extdirs</arg>
+            <arg>${project.basedir}/src/main/webapp/WEB-INF/lib</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <!-- 环境提示 -->
+          <execution>
+            <id>base</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <!-- http://ant.apache.org/manual/Tasks/ -->
+              <target>
+                <echo level="info">${osType} use "${filesSeparator}"</echo>
+                <echo level="info">use "${envSuffix}"</echo>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <profiles>
+    <!-- 判断系统选择分隔符 -->
+    <profile>
+      <id>win</id>
+      <activation>
+        <os>
+          <family>Windows</family>
+        </os>
+      </activation>
+      <properties>
+        <osType>win</osType>
+        <filesSeparator>;</filesSeparator>
+      </properties>
+    </profile>
+
+    <!-- 测试环境打包 mvn package -P sit -->
+    <profile>
+      <id>sit</id>
+      <properties>
+        <envSuffix>sit</envSuffix>
+      </properties>
+    </profile>
+
+    <!-- 生产环境打包 mvn package -P pro -->
+    <profile>
+      <id>pro</id>
+      <properties>
+        <envSuffix>pro</envSuffix>
+      </properties>
+    </profile>
+
+  </profiles>
+</project>

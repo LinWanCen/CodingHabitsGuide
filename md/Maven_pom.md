@@ -86,6 +86,9 @@ spring-boot-starter-parent 里仅对必要的做了设置，框架源代码如�
         </configuration>
       </plugin>
 ```
+
+一些老旧的项目引用了`com.sun`的包，需要配置`-bootclasspath`，可以参考 [Maven_sun/pom.xml](Maven_sun/pom.xml)
+
 参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html
 
 #### -verbose
