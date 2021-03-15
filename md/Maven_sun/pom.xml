@@ -20,6 +20,9 @@
     <!-- 分环境打包用参数 -->
     <envSuffix>dev</envSuffix>
     <maven.resources.overwrite>true</maven.resources.overwrite>
+    <!-- 避免被安装发布到仓库 -->
+    <maven.install.skip>true</maven.install.skip>
+    <maven.deploy.skip>true</maven.deploy.skip>
 
     <java.version>1.7</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -78,7 +81,8 @@
         <configuration>
           <compilerArgs>
             <arg>-bootclasspath</arg>
-            <arg>${env.JAVA_HOME}/jre/lib/rt.jar${filesSeparator}${env.JAVA_HOME}/jre/lib/jce.jar</arg>
+            <!-- 解决 com.sun 的包找不到的问题，${filesSeparator} 是分隔符，缺哪个就放哪个，不要全部放 -->
+            <arg>${env.JAVA_HOME}/jre/lib/rt.jar${filesSeparator}${env.JAVA_HOME}/jre/lib/jce.jar${filesSeparator}${env.JAVA_HOME}/jre/lib/ext/sunjce_provider.jar</arg>
             <arg>-extdirs</arg>
             <arg>${project.basedir}/src/main/webapp/WEB-INF/lib</arg>
           </compilerArgs>
@@ -92,7 +96,7 @@
           <!-- 环境提示 -->
           <execution>
             <id>base</id>
-            <phase>compile</phase>
+            <phase>validate</phase>
             <goals>
               <goal>run</goal>
             </goals>
