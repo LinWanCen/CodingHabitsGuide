@@ -1,4 +1,4 @@
-# Maven_pmd
+# Maven pmd 代码扫描
 
 ### `SonarQube`质量扫描、`JaCoCo`测试覆盖率等优先使用无侵入的方式，不要写到`pom.xml`
 

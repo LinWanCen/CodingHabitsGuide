@@ -1,4 +1,4 @@
-# Maven_profile
+# Maven profile 分环境打包
 
 
 ### 使用`profile`配合`resource`的`filter`对不同环境做不同配置，大多数配置应在配置平台

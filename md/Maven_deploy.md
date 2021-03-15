@@ -1,4 +1,4 @@
-# Maven_deploy
+# Maven deploy 发布
 
 
 ### `war`包等用于部署的模块应该配置忽略安装和发布到仓库
@@ -10,6 +10,35 @@
     <maven.install.skip>true</maven.install.skip>
     <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
+```
+
+### 一般情况下应推送源码和文档，便于依赖方研究如何使用和排查问题
+
+推送源码官方参考：http://maven.apache.org/plugins/maven-source-plugin/usage.html
+
+```xml
+<project>
+  ...
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  ...
+</project>
 ```
 
 

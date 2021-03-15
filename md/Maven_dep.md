@@ -1,4 +1,4 @@
-# Maven_dep
+# Maven dep 依赖
 
 ### 注意 Windows 不区分大小写，Linux 区分，必须写对
 
@@ -99,11 +99,20 @@ resolution will not be reattempted until the update interval of 远程仓库ID h
 
 ### 仓库 id 不要重复，非中央仓库不应使用 central
 
+镜像配置用于对特定的存储库使用备用镜像，而不更改项目文件，
+
+`mirrorOf`对应`repositoryId`，可以设置为`*`或`central`。
+
+假设配置`repository`时使用`central`作为`id`，那么就不能不同仓库用不同的 mirror。
+
+
+### 仓库只下载稳定版本，需做好配置
+
 仓库默认只下载稳定版本，如果 Nexus 代理是混合仓库的话需要在`pom.xml`或`settings.xml`中设置仓库快照为启用。
 
-镜像配置只是仓库的代理地址配置，`mirrorOf`对应`repositoryId`，可以设置为`*`或`central`。
+settings 镜像配置官方文档：https://maven.apache.org/settings.html#mirrors
 
-假设配置`repository`时使用`central`作为`id`，那么就不能不同仓库用不同的 mirror
+settings 仓库配置官方文档：https://maven.apache.org/settings.html#repositories
 
 settings.xml
 ```xml
@@ -144,10 +153,7 @@ settings.xml
 </settings>
 ```
 
-settings 镜像配置官方文档：https://maven.apache.org/settings.html#mirrors
-
-settings 仓库配置官方文档：https://maven.apache.org/settings.html#repositories
-
+pom 仓库配置官方文档：https://maven.apache.org/pom.html#repositories
 
 pom.xml
 ```xml
@@ -171,4 +177,3 @@ pom.xml
   </repositories>
 </project>
 ```
-pom 仓库配置官方文档：https://maven.apache.org/pom.html#repositories

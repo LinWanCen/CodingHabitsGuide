@@ -95,7 +95,7 @@
         <executions>
           <!-- 环境提示 -->
           <execution>
-            <id>base</id>
+            <id>echo</id>
             <phase>validate</phase>
             <goals>
               <goal>run</goal>
