@@ -32,6 +32,8 @@
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <libPath>${project.basedir}/src/main/webapp/WEB-INF/lib/</libPath>
   </properties>
 
   <dependencies>
@@ -76,20 +78,21 @@
 
       <!-- jar 都迁移 maven dependencies 的话可以取消这个插件 -->
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
           <compilerArgs>
             <arg>-bootclasspath</arg>
-            <!-- 解决 com.sun 的包找不到的问题，${filesSeparator} 是分隔符，缺哪个就放哪个，不要全部放 -->
-            <arg>${env.JAVA_HOME}/jre/lib/rt.jar${filesSeparator}${env.JAVA_HOME}/jre/lib/jce.jar${filesSeparator}${env.JAVA_HOME}/jre/lib/ext/sunjce_provider.jar</arg>
+            <arg>${env.JAVA_HOME}/jre/lib/rt.jar</arg>
             <arg>-extdirs</arg>
-            <arg>${project.basedir}/src/main/webapp/WEB-INF/lib</arg>
+            <arg>${libPath}${filesSeparator}${env.JAVA_HOME}/jre/lib/${filesSeparator}${env.JAVA_HOME}/jre/lib/ext/</arg>
           </compilerArgs>
         </configuration>
       </plugin>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>3.0.0</version>
         <executions>

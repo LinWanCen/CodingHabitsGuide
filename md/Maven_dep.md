@@ -12,6 +12,7 @@
 3.1 前，注意这里是`compilerArguments`，后面有个`s`
 ```xml
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.0</version>
         <configuration>
@@ -25,6 +26,7 @@
 (最新 version 可以参考 http://maven.apache.org/plugins/maven-compiler-plugin/usage.html)
 ```xml
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
