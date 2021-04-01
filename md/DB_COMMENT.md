@@ -54,40 +54,40 @@ ALTER TABLE COMMON_SEQ COMMENT '流水号表';
 ALTER TABLE COMMON_SEQ MODIFY `APP_CODE` char(6) NOT NULL COMMENT '应用编码';
 
 -- 查询所有没注释的表
-SELECT TABLE_NAME, TABLE_COMMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = '库名' AND TABLE_COMMENT = '';
+SELECT TABLE_SCHEMA, TABLE_NAME, TABLE_COMMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA not in ('information_schema','performance_schema','mysql','sys')  AND TABLE_COMMENT = '';
 
 -- 查询所有没注释的列
-SELECT TABLE_NAME,COLUMN_NAME, COLUMN_COMMENT FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '库名' AND COLUMN_COMMENT = '';
+SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, COLUMN_COMMENT FROM information_schema.COLUMNS WHERE TABLE_SCHEMA not in ('information_schema','performance_schema','mysql','sys')  AND COLUMN_COMMENT = '';
 ```
 Jenkins
 ```shell
 echo '<style> table {border-collapse: collapse;}  th, td {border: 1px solid lightgray;padding-left: 5px;padding-right: 5px;}</style><table>' >\
-库名-not_comment_table.html
+APP_NAME-not_comment_table.html
 
 mysql -h ___IP___ -P 3306 -u 用户名 -p 密码 -e \
-"SELECT TABLE_NAME, TABLE_COMMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = '库名' AND TABLE_COMMENT = '';"\
+"SELECT TABLE_SCHEMA, TABLE_NAME, TABLE_COMMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA not in ('information_schema','performance_schema','mysql','sys') AND TABLE_COMMENT = '';"\
 | sed 's/\t/<\/td><td>/g; s/^/<tr><td>/; s/$/<\/td><\/tr>/;' >>\
-库名-not_comment_table.html
+APP_NAME-not_comment_table.html
 
 echo "</table>" >>\
-库名-not_comment_table.html
+APP_NAME-not_comment_table.html
 
-rows_tb=$((`wc -l < 库名-not_comment_table.html` - 3))
+rows_tb=$((`wc -l < APP_NAME-not_comment_table.html` - 3))
 echo $rows_tb
 ```
 ```shell
 echo '<style> table {border-collapse: collapse;}  th, td {border: 1px solid lightgray;padding-left: 5px;padding-right: 5px;}</style><table>' >\
-库名-not_comment_column.html
+APP_NAME-not_comment_column.html
 
 mysql -h ___IP___ -P 3306 -u 用户名 -p 密码 -e \
-"SELECT TABLE_NAME,COLUMN_NAME, COLUMN_COMMENT FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '库名' AND COLUMN_COMMENT = '';"\
+"SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, COLUMN_COMMENT FROM information_schema.COLUMNS WHERE TABLE_SCHEMA not in ('information_schema','performance_schema','mysql','sys') AND COLUMN_COMMENT = '';"\
 | sed 's/\t/<\/td><td>/g; s/^/<tr><td>/; s/$/<\/td><\/tr>/;' >>\
-库名-not_comment_column.html
+APP_NAME-not_comment_column.html
 
 echo "</table>" >>\
-库名-not_comment_column.html
+APP_NAME-not_comment_column.html
 
-rows_col=$((`wc -l < 库名-not_comment_column.html` - 3))
+rows_col=$((`wc -l < APP_NAME-not_comment_column.html` - 3))
 echo $rows_col
 ```
 
