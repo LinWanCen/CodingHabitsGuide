@@ -89,3 +89,11 @@ https://maven.apache.org/pom.html#A_final_note_on_Inheritance_v._Aggregation
 
 </project>
 ```
+
+## 非 Maven 项目升级到 Maven 项目时一般不修改目录结构，依赖不改成仓库下载
+
+强行修改目录结构会影响原有的开发模式，开发需要时间适应
+
+为 DevOps 升级 Maven 应优先使用不修改目录的低侵入形式无缝升级，
+
+只添加 pom.xml 等文件，并做分环境打包等

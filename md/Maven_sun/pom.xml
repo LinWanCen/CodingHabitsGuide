@@ -56,6 +56,9 @@
   <build>
     <finalName>${project.artifactId}</finalName>
 
+    <!-- 不修改目录结构升级 Maven 用 -->
+    <sourceDirectory>${basedir}/src/</sourceDirectory>
+
     <!-- 分环境打包 -->
     <resources>
       <resource>
@@ -88,6 +91,17 @@
             <arg>-extdirs</arg>
             <arg>${libPath}${filesSeparator}${env.JAVA_HOME}/jre/lib/${filesSeparator}${env.JAVA_HOME}/jre/lib/ext/</arg>
           </compilerArgs>
+        </configuration>
+      </plugin>
+
+      <!-- 不修改目录结构升级 Maven 用 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.1</version>
+        <configuration>
+          <failOnMissingWebXml>true</failOnMissingWebXml>
+          <warSourceDirectory>${basedir}/WebContent/</warSourceDirectory>
         </configuration>
       </plugin>
 
