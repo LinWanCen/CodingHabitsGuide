@@ -40,7 +40,7 @@
 
 一些老旧的项目引用了`com.sun`的包，需要配置`-bootclasspath`，
 并且确保 JAVA_HOME 环境变量指向的是有这些类的 Oracle JDK，而不是 openjdk，
-可以参考 [Maven_sun/pom.xml](Maven_sun/pom.xml)
+可以参考 [Maven_sun/pom.xml](pom.xml)
 
 
 javac 参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html
@@ -96,7 +96,7 @@ Could not find artifact 找不到的包gav in 远程仓库ID (远程仓库URL)
 was cached in the local repository,
 resolution will not be reattempted until the update interval of 远程仓库ID has elapsed or updates are forced
 ```
-[delete_lastUpdated_and_remote.sh](Maven/delete_lastUpdated_and_remote.sh)
+[delete_lastUpdated_and_remote.sh](delete_lastUpdated_and_remote.sh)
 
 
 ### 仓库 id 不要重复，非中央仓库不应使用 central

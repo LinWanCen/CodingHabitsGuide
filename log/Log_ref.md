@@ -29,7 +29,7 @@ public class Test {
 
 2. 【强制】所有日志文件至少保存 15 天，因为有些异常具备以“周”为频次发生的特点。
    对于当天日志，以“应用名.log”来保存，保存在/opt/logs/应用名/目录下，
-   过往日志格式为: ${baseDir}/%d{yyyy-MM, aux}/%d{yyyy-MM-dd}/${logName}.%d{yyyy-MM-dd}.%i.log.gz
+   过往日志格式为: ${baseDir}/%d{yyyy-MM, aux}/%d{yyyy-MM-dd}/${logName}/${logName}.%d{yyyy-MM-dd}.%i.log.gz
 
 
 * 统一以文件类型拓展名 log 结尾，便于系统识别文件类型。

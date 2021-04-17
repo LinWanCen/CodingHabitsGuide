@@ -1,0 +1,90 @@
+pipeline {
+  environment {
+    projectKey = 'log_demo'
+    projectName = '日志配置示例 log_demo'
+    mvnPhase = 'test'
+    mvnOpt = ''
+  }
+
+  // 可选 Sonar 全局变量
+  // sonarURL
+  // sonarLogin
+
+  agent {
+    node {
+      label any
+      // customWorkspace "${customWorkspace}"
+    }
+  }
+
+  stages {
+    stage('mvn clean') {
+      steps {
+        sh """source /etc/profile 1>/dev/null 2>&1
+              mvn ${mvnOpt} clean"""
+      }
+    }
+
+    stage('static analysis') {
+      parallel {
+
+        stage('sonar') {
+          steps {
+            script {
+              if (env.projectKey != null && env.projectKey != '' && env.sonarURL != null && env.sonarLogin != null) {
+                env.sonarPhase = """sonar:sonar \
+                    -Dsonar.projectName="${projectName}" \
+                    -Dsonar.projectKey=${projectKey} \
+                    -Dsonar.host.url=${sonarURL} \
+                    -Dsonar.login=${sonarLogin}"""
+              } else {
+                env.sonarPhase = ''
+              }
+            }
+            sh """source /etc/profile 1>/dev/null 2>&1
+                  mvn -V -U ${mvnOpt} jacoco:prepare-agent ${mvnPhase} ${sonarPhase}"""
+            recordIssues(tools: [java()])
+          }
+        }
+
+        stage('git commit static') {
+          steps {
+            sh '''git log | grep "^Author: " | awk '{print $2}' | sort | uniq -c | sort -k1,1nr'''
+          }
+        }
+
+        stage('findbugs') {
+          steps {
+            sh """source /etc/profile 1>/dev/null 2>&1
+                  mvn ${mvnOpt} findbugs:findbugs"""
+            recordIssues(tools: [findBugs(pattern: '**/target/findbugsXml.xml', useRankAsPriority: true)])
+          }
+        }
+
+        stage('pmd') {
+          steps {
+            sh """source /etc/profile 1>/dev/null 2>&1
+                  mvn ${mvnOpt} pmd:pmd"""
+            recordIssues(tools: [pmdParser(pattern: '**/target/pmd.xml')])
+          }
+        }
+
+        stage('cpd') {
+          steps {
+            sh """source /etc/profile 1>/dev/null 2>&1
+                  mvn ${mvnOpt} pmd:cpd"""
+            recordIssues(tools: [cpd(pattern: '**/target/cpd.xml')])
+          }
+        }
+
+        stage('checkstyle') {
+          steps {
+            sh """source /etc/profile 1>/dev/null 2>&1
+                  mvn ${mvnOpt} checkstyle:checkstyle"""
+            recordIssues(tools: [checkStyle(pattern: '**/target/checkstyle-result.xml')])
+          }
+        }
+      }
+    }
+  }
+}

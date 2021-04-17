@@ -2,7 +2,7 @@
 
 ### 日志输出的级别需经过思考，为什么要输出，为什么选这个级别，注释说明特殊考虑。
 
-人工介入 error，自动处理 warn ，关键过程 info，排查问题 debug，跟踪变量 trace
+人工介入 error，自动处理 warn，关键过程 info，排查问题 debug，跟踪变量 trace
 
 info 级别下的输出应该是比较干净的，可以降级的都降级，不降级的注释为什么
 
@@ -33,7 +33,7 @@ info 级别下的输出应该是比较干净的，可以降级的都降级，不
 
 ### 输出文件路径可以前面加`file:///`，并使用左斜杠（在 IDEA 控制台中会形成链接）
 
-[PathUtils.java](Java_log/PathUtils.java)
+[PathUtils.java](PathUtils.java)
 
 
 ### 不使用`System.out`、`System.err`、`printStackTrace`

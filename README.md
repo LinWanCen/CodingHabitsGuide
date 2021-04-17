@@ -48,17 +48,11 @@ SCM 是版本控制、变更控制等，例如`Git`、`SVN`等，也称为`CVS`�
 
 [Java](md/Java.md)
 
-[Java 日志](md/Java_log.md)
-
-[服务与联调](md/Service.md)
-
-[日志配置指南](md/Log_conf.md)
-
-[其他日志规范](md/Log_ref.md)
+[日志指南](log/README.md)
 
 [Java_UnitTest](md/Java_UnitTest.md)⛔
 
-[Maven 指引](md/Maven.md)
+[Maven 指引](maven/README.md)
 
 
 ### DB

@@ -14,9 +14,6 @@
   <packaging>war</packaging>
 
   <properties>
-    <!-- 分系统加载 com.sun 的包时用不同的分隔符 -->
-    <osType>not win</osType>
-    <filesSeparator>:</filesSeparator>
     <!-- 分环境打包用参数 -->
     <envSuffix>dev</envSuffix>
     <maven.resources.overwrite>true</maven.resources.overwrite>
@@ -89,7 +86,7 @@
             <arg>-bootclasspath</arg>
             <arg>${env.JAVA_HOME}/jre/lib/rt.jar</arg>
             <arg>-extdirs</arg>
-            <arg>${libPath}${filesSeparator}${env.JAVA_HOME}/jre/lib/${filesSeparator}${env.JAVA_HOME}/jre/lib/ext/</arg>
+            <arg>${libPath}${path.separator}${env.JAVA_HOME}/jre/lib/${path.separator}${env.JAVA_HOME}/jre/lib/ext/</arg>
           </compilerArgs>
         </configuration>
       </plugin>
@@ -120,8 +117,8 @@
             <configuration>
               <!-- http://ant.apache.org/manual/Tasks/ -->
               <target>
-                <echo level="info">${osType} use "${filesSeparator}"</echo>
-                <echo level="info">use "${envSuffix}"</echo>
+                <echo level="info">path.separator: ${path.separator}</echo>
+                <echo level="info">envSuffix: ${envSuffix}</echo>
               </target>
             </configuration>
           </execution>
@@ -132,19 +129,6 @@
   </build>
 
   <profiles>
-    <!-- 判断系统选择分隔符 -->
-    <profile>
-      <id>win</id>
-      <activation>
-        <os>
-          <family>Windows</family>
-        </os>
-      </activation>
-      <properties>
-        <osType>win</osType>
-        <filesSeparator>;</filesSeparator>
-      </properties>
-    </profile>
 
     <!-- 测试环境打包 mvn package -P sit -->
     <profile>

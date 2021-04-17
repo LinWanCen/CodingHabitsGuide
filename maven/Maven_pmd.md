@@ -45,3 +45,10 @@ http://maven.apache.org/plugins/maven-checkstyle-plugin/
 
 SonarQube 的使用可以参考：\
 https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/
+
+
+### 提交较为频繁的项目不要设置触发器，耗时较长的在非上班时间运行以减少虚拟机资源占用
+
+```
+H H(0-7),H(12-13),18 * * *
+```
