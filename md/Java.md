@@ -2,6 +2,11 @@
 
 ## 代码
 
+### 创建类前先搜下类名是否被使用，尽量不要重复
+
+查找类以便用类名，类名重复查找时难以分辨
+
+
 ### 常量数组和枚举单独成行，最后一项也加逗号
 https://github.com/alibaba/p3c/issues/563
 
@@ -9,7 +14,7 @@ https://github.com/alibaba/p3c/issues/563
 ### 数字使用下划线增加可读性
 
 JDK 7 中的新特性
-```java
+```
 long a = 1_000_000L;
 byte b = 0b0010_0101;
 long maxLong = 0x7fff_ffff_ffff_ffffL;
@@ -18,7 +23,7 @@ long maxLong = 0x7fff_ffff_ffff_ffffL;
 
 ### 修饰符按谷歌规范的顺序
 
-```java
+```
 public protected private abstract default static final transient volatile synchronized native strictfp
 ```
 
@@ -38,6 +43,26 @@ https://github.com/google/styleguide/blob/gh-pages/javaguide.html
 ### 使用 JVM 钩子优雅停机（断电或`kill -9`无效）
 
 
+### 开始结束中相同的代码应该抽取，以免忘记且减少重复
+
+例如`CountDownLatch`的处理:
+```java
+public class MyTask implements Runnable {
+    @Override
+    public void run() {
+        try {
+            if (apply()) {
+                ok();
+            } else {
+                no();
+            }
+        } finally {
+            // 在 finally 中 countDown 避免异常等情况导致没有执行而卡住主线程
+            count.countDown();
+        }
+    }
+}
+```
 
 ## 注释
 
@@ -47,12 +72,12 @@ https://github.com/google/styleguide/blob/gh-pages/javaguide.html
 
 使用`{@link package.class＃member label}`便于在相关程序中快速跳转
 
-测试案例链接到测试类应使用`@see`，不加`package`，使链接保持简短
+测试案例链接到测试类应使用`@see`，不加`package`，因为在同一个包里，使链接保持简短
 ```java
 /**
- * @see Include
+ * @see IncludeTest
  */
-public class IncludeTest {
+public class IncludeTest {}
 ```
 
 
