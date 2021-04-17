@@ -49,6 +49,8 @@ http://logging.apache.org/log4j/2.x/manual/async.html
 
 后面可以加自定义的字段，不要加整个文件都一致的`'%X{filedName}`字段，在代码打印的消息`%msg`前加竖线列分割。
 
+推送到日志归集服务时提供数据库分库编号、缓存实例、容器名、机器名、IP等信息
+
 ### 交易日志中需包含全局流水号`GlblSrlNO`和应用流水号`CnsmrSrlNO`，并在前面加单引号
 
 ```java
