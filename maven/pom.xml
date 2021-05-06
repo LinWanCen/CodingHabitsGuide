@@ -8,15 +8,14 @@
   <artifactId>项目包名</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
+  <packaging>war</packaging>
+
   <name>${project.artifactId} | 中文简称</name>
   <description>中文全称 英文全称</description>
-
-  <packaging>war</packaging>
 
   <properties>
     <!-- 分环境打包用参数 -->
     <envSuffix>dev</envSuffix>
-    <maven.resources.overwrite>true</maven.resources.overwrite>
     <!-- 避免被安装发布到仓库 -->
     <maven.install.skip>true</maven.install.skip>
     <maven.deploy.skip>true</maven.deploy.skip>
@@ -30,7 +29,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <libPath>${project.basedir}/src/main/webapp/WEB-INF/lib/</libPath>
+    <libPath>${project.basedir}/WebContent/WEB-INF/lib/</libPath>
   </properties>
 
   <dependencies>
@@ -53,16 +52,21 @@
   <build>
     <finalName>${project.artifactId}</finalName>
 
-    <!-- 不修改目录结构升级 Maven 用 -->
-    <sourceDirectory>${basedir}/src/</sourceDirectory>
-
     <!-- 分环境打包 -->
+    <filters>
+      <filter>${basedir}/src/filters/${envSuffix}.properties</filter>
+    </filters>
+    <!-- maven.resources.overwrite 没设置 true 时不会覆盖，即前面的优先 -->
     <resources>
       <resource>
-        <directory>${basedir}/src/main/resources</directory>
+        <directory>${basedir}/src/main/resources_${envSuffix}</directory>
       </resource>
       <resource>
-        <directory>${basedir}/src/main/resources_${envSuffix}</directory>
+        <directory>${basedir}/src/main/resources_filtered</directory>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
       </resource>
       <!-- 编译 src/main/java 目录下的 xml 文件 -->
       <resource>
@@ -89,6 +93,29 @@
             <arg>${libPath}${path.separator}${env.JAVA_HOME}/jre/lib/${path.separator}${env.JAVA_HOME}/jre/lib/ext/</arg>
           </compilerArgs>
         </configuration>
+      </plugin>
+
+      <!-- 不修改目录结构升级 Maven 用 -->
+      <!-- http://www.mojohaus.org/build-helper-maven-plugin/usage.html -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${basedir}/src/</source>
+                <source>${basedir}/src2/</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <!-- 不修改目录结构升级 Maven 用 -->
@@ -130,7 +157,7 @@
 
   <profiles>
 
-    <!-- 测试环境打包 mvn package -P sit -->
+    <!-- 集成测试环境打包 mvn package -P sit -->
     <profile>
       <id>sit</id>
       <properties>
@@ -138,11 +165,11 @@
       </properties>
     </profile>
 
-    <!-- 生产环境打包 mvn package -P pro -->
+    <!-- 生产环境打包 mvn package -P prd -->
     <profile>
-      <id>pro</id>
+      <id>prd</id>
       <properties>
-        <envSuffix>pro</envSuffix>
+        <envSuffix>prd</envSuffix>
       </properties>
     </profile>
 

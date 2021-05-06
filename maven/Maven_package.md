@@ -8,11 +8,8 @@
 ```xml
 <project>
   <build>
+    <!-- maven.resources.overwrite 没设置 true 时不会覆盖，即前面的优先 -->
     <resources>
-      <!-- 保留以免少了这里的文件 -->
-      <resource>
-        <directory>${basedir}/src/main/resources</directory>
-      </resource>
       <!-- 分环境打包 -->
       <resource>
         <directory>${basedir}/src/main/resources_${envSuffix}</directory>
@@ -22,6 +19,10 @@
         <directory>${basedir}/src/main/scripts</directory>
         <filtering>true</filtering>
         <targetPath>${project.build.directory}/zip</targetPath>
+      </resource>
+      <!-- 保留以免少了这里的文件 -->
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
       </resource>
     </resources>
   </build>
@@ -36,7 +37,9 @@
  <build>
    <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
         <configuration>
           <archive>
             <manifest>
@@ -71,7 +74,9 @@
     <plugins>
       <!-- 拷贝 dependencies 的依赖到 lib 目录 -->
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.2</version>
         <executions>
           <execution>
             <id>copy-dependencies</id>
@@ -84,6 +89,7 @@
               <overWriteReleases>false</overWriteReleases>
               <overWriteSnapshots>false</overWriteSnapshots>
               <overWriteIfNewer>true</overWriteIfNewer>
+              <includeScope>runtime</includeScope>
             </configuration>
           </execution>
         </executions>
@@ -104,9 +110,11 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>3.0.0</version>
         <executions>
+
           <!-- 编译前清空 zip 目录，避免删除文件不生效 -->
           <execution>
             <id>zip</id>

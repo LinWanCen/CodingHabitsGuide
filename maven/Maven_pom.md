@@ -67,10 +67,11 @@ https://maven.apache.org/pom.html#A_final_note_on_Inheritance_v._Aggregation
   <groupId>io.github.linwancen.demo</groupId>
   <artifactId>log-demo-pom</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>${project.artifactId} | 日志演示聚合项目</name>
-  <description>用于一起编译，不要以此为父项目</description>
 
   <packaging>pom</packaging>
+
+  <name>${project.artifactId} | 日志演示聚合项目</name>
+  <description>用于一起编译，不要以此为父项目</description>
 
   <modules>
     <module>log4j2-demo</module>
@@ -97,3 +98,40 @@ https://maven.apache.org/pom.html#A_final_note_on_Inheritance_v._Aggregation
 为 DevOps 升级 Maven 应优先使用不修改目录的低侵入形式无缝升级，
 
 只添加 pom.xml 等文件，并做分环境打包等
+
+### 推荐按标准顺序放置标签
+
+来自 Sonar 的提示
+```xml
+<project>
+  <modelVersion/>
+  <parent/>
+  <groupId/>
+  <artifactId/>
+  <version/>
+  <packaging/>
+  <name/>
+  <description/>
+  <url/>
+  <inceptionYear/>
+  <organization/>
+  <licenses/>
+  <developers/>
+  <contributors/>
+  <mailingLists/>
+  <prerequisites/>
+  <modules/>
+  <scm/>
+  <issueManagement/>
+  <ciManagement/>
+  <distributionManagement/>
+  <properties/>
+  <dependencyManagement/>
+  <dependencies/>
+  <repositories/>
+  <pluginRepositories/>
+  <build/>
+  <reporting/>
+  <profiles/>
+</project>
+```
