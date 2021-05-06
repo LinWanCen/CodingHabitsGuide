@@ -7,7 +7,7 @@ variables:
 # sonarLogin=
 # 顶级群组环境变量
 # sonar_server=-Dsonar.host.url=http://ip:port -Dsonar.login=${sonarLogin}
-# MAVEN_CLI_OPTS=-V -U -B -fae -DinstallAtEnd=true -DdeployAtEnd=true
+# MAVEN_CLI_OPTS=-V -U -fae -DinstallAtEnd=true -DdeployAtEnd=true
 # Maven 命令行参数官方文档：http://maven.apache.org/ref/3.6.3/maven-embedder/cli.html
 
 sonar:
@@ -25,13 +25,18 @@ sonar:
         if [ -f ci_settings.xml ]; then
           setting_file="-s ci_settings.xml";
         fi;
+
+        prepare_phase = "org.jacoco:jacoco-maven-plugin:prepare-agent";
+        report_phase = "org.jacoco:jacoco-maven-plugin:report";
+        sonar_phase = "org.sonarsource.scanner.maven:sonar-maven-plugin:sonar";
+
         if [ "$sonar_server" != "" ]; then
-          mvn $MAVEN_CLI_OPTS $setting_file jacoco:prepare-agent $phase sonar:sonar
+          mvn $MAVEN_CLI_OPTS $setting_file $prepare_phase $phase $report_phase $sonar_phase
             -Dsonar.projectName="$CI_PROJECT_PATH $CI_PROJECT_PATH_SLUG"
             -Dsonar.projectKey=$CI_PROJECT_PATH_SLUG
             $sonar_server;
         else
-          mvn $MAVEN_CLI_OPTS $setting_file jacoco:prepare-agent $phase;
+          mvn $MAVEN_CLI_OPTS $setting_file $prepare_phase $phase $report_phase;
         fi;
       fi
 #  only:

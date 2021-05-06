@@ -1,0 +1,70 @@
+pipeline {
+  // 参数
+  // label
+  // customWorkspace
+  //
+  // gitUrl
+  // branches
+  // credentialsId
+  //
+  // projectKey
+  // projectName
+  //
+  // 可选 Sonar 全局变量
+  // sonarURL
+  // sonarLogin
+
+  agent {
+    node {
+        label "${label}"
+        customWorkspace "${customWorkspace}"
+    }
+  }
+
+  stages {
+    stage('git checkout'){
+      steps {
+        script {
+          if (env.GitUrl != null && env.GitUrl != '') {
+            checkout([$class: 'GitSCM',
+              branches: [[name: "${branches}"]],
+              extensions: [],
+              userRemoteConfigs: [[
+                credentialsId: "${GitCredentialsId}",
+                url: "${GitUrl}"]]
+            ])
+          } else {
+              echo "GitUrl is [${GitUrl}], skip checkout"
+          }
+        }
+      }
+    }
+
+    stage('static analysis') {
+      parallel {
+
+        stage('sonar') {
+          steps {
+            script {
+              if (env.projectKey != null && env.projectKey != '' && env.sonarURL != null && env.sonarLogin != null) {
+                sh """sonar-scanner \
+                    -Dsonar.sources=. \
+                    -Dsonar.java.binaries=. \
+                    -Dsonar.projectName="${projectName}" \
+                    -Dsonar.projectKey=${projectKey} \
+                    -Dsonar.host.url=${sonarURL} \
+                    -Dsonar.login=${sonarLogin}"""
+              }
+            }
+          }
+        }
+
+        stage('git commit static') {
+          steps {
+            sh '''git log | grep "^Author: " | awk '{print $2}' | sort | uniq -c | sort -k1,1nr'''
+          }
+        }
+      }
+    }
+  }
+}

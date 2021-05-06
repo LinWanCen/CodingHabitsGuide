@@ -58,6 +58,15 @@ SELECT TABLE_SCHEMA, TABLE_NAME, TABLE_COMMENT FROM information_schema.TABLES WH
 
 -- 查询所有没注释的列
 SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, COLUMN_COMMENT FROM information_schema.COLUMNS WHERE TABLE_SCHEMA not in ('information_schema','performance_schema','mysql','sys')  AND COLUMN_COMMENT = '';
+
+-- 表大小
+SELECT TABLE_SCHEMA, TABLE_NAME, TABLE_COMMENT,
+       DATA_LENGTH / 1024 / 1024 AS DATA_MB,
+       INDEX_LENGTH / 1024 / 1024 AS INDEX_MB,
+       (DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024 AS ALL_MB,
+       TABLE_ROWS
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA not in ('information_schema', 'performance_schema', 'mysql', 'sys');
 ```
 Jenkins
 ```shell

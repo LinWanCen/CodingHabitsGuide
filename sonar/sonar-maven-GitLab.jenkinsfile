@@ -32,7 +32,7 @@ pipeline {
           steps {
             script {
               if (env.projectKey != null && env.projectKey != '' && env.sonarURL != null && env.sonarLogin != null) {
-                env.sonarPhase = """sonar:sonar \
+                env.sonarPhase = """org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
                     -Dsonar.projectName="${projectName}" \
                     -Dsonar.projectKey=${projectKey} \
                     -Dsonar.host.url=${sonarURL} \
@@ -41,8 +41,10 @@ pipeline {
                 env.sonarPhase = ''
               }
             }
+            env.agentPhase = 'org.jacoco:jacoco-maven-plugin:prepare-agent'
+            env.reportPhase = 'org.jacoco:jacoco-maven-plugin:report'
             sh """source /etc/profile 1>/dev/null 2>&1
-                  mvn -V -U ${mvnOpt} jacoco:prepare-agent ${mvnPhase} ${sonarPhase}"""
+                  mvn -V -U ${mvnOpt} ${agentPhase} ${mvnPhase} ${reportPhase} ${sonarPhase}"""
             recordIssues(tools: [java()])
           }
         }
@@ -56,7 +58,7 @@ pipeline {
         stage('findbugs') {
           steps {
             sh """source /etc/profile 1>/dev/null 2>&1
-                  mvn ${mvnOpt} findbugs:findbugs"""
+                  mvn -V -U ${mvnOpt} org.codehaus.mojo:findbugs-maven-plugin:findbugs"""
             recordIssues(tools: [findBugs(pattern: '**/target/findbugsXml.xml', useRankAsPriority: true)])
           }
         }
@@ -64,7 +66,7 @@ pipeline {
         stage('pmd') {
           steps {
             sh """source /etc/profile 1>/dev/null 2>&1
-                  mvn ${mvnOpt} pmd:pmd"""
+                  mvn -V -U ${mvnOpt} pmd:pmd"""
             recordIssues(tools: [pmdParser(pattern: '**/target/pmd.xml')])
           }
         }
@@ -72,7 +74,7 @@ pipeline {
         stage('cpd') {
           steps {
             sh """source /etc/profile 1>/dev/null 2>&1
-                  mvn ${mvnOpt} pmd:cpd"""
+                  mvn -V -U ${mvnOpt} pmd:cpd"""
             recordIssues(tools: [cpd(pattern: '**/target/cpd.xml')])
           }
         }
@@ -80,8 +82,9 @@ pipeline {
         stage('checkstyle') {
           steps {
             sh """source /etc/profile 1>/dev/null 2>&1
-                  mvn ${mvnOpt} checkstyle:checkstyle"""
-            recordIssues(tools: [checkStyle(pattern: '**/target/checkstyle-result.xml')])
+                  mvn -V -U ${mvnOpt} checkstyle:checkstyle"""
+            // 可能时间过长
+            // recordIssues(tools: [checkStyle(pattern: '**/target/checkstyle-result.xml')])
           }
         }
       }
