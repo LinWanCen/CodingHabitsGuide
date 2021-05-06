@@ -43,14 +43,16 @@ https://github.com/google/styleguide/blob/gh-pages/javaguide.html
 ### 使用 JVM 钩子优雅停机（断电或`kill -9`无效）
 
 
-### 开始结束中相同的代码应该抽取，以免忘记且减少重复
+### 在多线程任务入口处设置跟踪任务的 traceId 到日志门面的 MDC 中
 
-例如`CountDownLatch`的处理:
+### 开始结束中相同的代码应该抽取或使用切面，以免忘记且减少重复
+
+`CountDownLatch`与`MDC`(Mapped Diagnostic Context):
 ```java
 public class MyTask implements Runnable {
     @Override
     public void run() {
-        try {
+        try (MDC.MDCCloseable ignored = MDC.putCloseable(MdcKey.DEMO, traceId)) {
             if (apply()) {
                 ok();
             } else {
@@ -63,6 +65,7 @@ public class MyTask implements Runnable {
     }
 }
 ```
+
 
 ## 注释
 
