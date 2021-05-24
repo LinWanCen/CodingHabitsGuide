@@ -50,7 +50,7 @@ SCM 是版本控制、变更控制等，例如`Git`、`SVN`等，也称为`CVS`�
 
 [日志指南](log/README.md)
 
-[Java 测试](java_test/java_test.md)
+[Java 测试](java_test/README.md)
 
 [Maven 指引](maven/README.md)
 

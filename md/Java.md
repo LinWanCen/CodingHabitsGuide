@@ -150,3 +150,26 @@ if [ "$1" = "jpda" ] ; then
 ./catalina.sh jpda start
 ```
 （助记：java 的 j，pda掌上电脑)
+
+
+### 从 class 查看 JDK 版本
+
+Windows
+```batch
+javap -v Demo.class | finstr version
+```
+
+Linux
+```sh
+javap -v Demo.class | grep version
+  minor version: 0
+  major version: 52
+od -x UniqueValidator.class |awk 'NR==1'
+0000000 feca beba 0000 3400 7c01 000a 0062 07be
+```
+
+| version | Hex        | major       |
+| ------- | ---------- | ----------- |
+| 6       | 2 ^ 5 = 32 | 10 × 5 = 50 |
+| 7       | 33         | 51          |
+| 8       | 34         | 52          |
