@@ -14,6 +14,8 @@
 使用 log4j2 和 logback 的官方文档示例值 30 秒，
 这里的时间间隔太短怕有细微的性能消耗，太长的话运维修改需等待太久生效。
 
+## Pattern
+
 ### pattern 和路径前后缀等多处重复的值配置为参数方便修改
 
 ### pattern 配置编码格式避免乱码
@@ -51,16 +53,6 @@ http://logging.apache.org/log4j/2.x/manual/async.html
 
 推送到日志归集服务时提供数据库分库编号、缓存实例、容器名、机器名、IP等信息
 
-### 交易日志中需包含全局流水号`GlblSrlNO`和应用流水号`CnsmrSrlNO`，并在前面加单引号
-
-```java
-import org.slf4j.MDC;
-public class Test {
-    public static void func() {
-        MDC.put("traceId", traceId);
-    }
-}
-```
 
 ### 备份文件后面加 gz 压缩，减少磁盘空间消耗
 
@@ -77,6 +69,26 @@ log4j2
   <SizeBasedTriggeringPolicy size="10 MB"/>
 </Policies>
 ```
+
+### 计算好日志最大磁盘占用，避免磁盘被占满
+
+log4j2：
+http://logging.apache.org/log4j/log4j-2.8/manual/appenders.html#Log_Archive_Retention_Policy:_Delete_on_Rollover
+`IfAccumulatedFileSize`的和
+```xml
+      <DefaultRolloverStrategy max="20">
+        <Delete basePath="${baseDir}" maxDepth="4">
+          <IfFileName glob="**/app.*.log.gz"/>
+          <IfAny>
+            <IfLastModified age="200d"/>
+            <IfAccumulatedFileSize exceeds="5GB"/>
+          </IfAny>
+        </Delete>
+      </DefaultRolloverStrategy>
+```
+
+logback：
+`<totalSizeCap>`的和
 
 
 ## log4j2 配置规范
