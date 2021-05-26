@@ -8,6 +8,24 @@
 git svn clone svn地址 --username=用户名
 ```
 
+### 使用`.gitignore`文件忽略编译后的文件和本地运行时产生的日志等
+
+IDEA 提示”部分忽略的目录未从索引和搜索中排除“时，\
+点击查看目录，排除掉以免搜索到不需要的日志，\
+并减少建立索引的时间，**提升性能**
+
+从svn迁移过来的一般在`.gitignore`文件最上面会添加忽略
+```gitignore
+.svn
+```
+
+
+### 使用`.gitkeep`空文件在`Git`中保留空文件夹
+
+### 提交时注意作者和邮箱是否正确，避免不统一
+
+https://git-scm.com/book/zh/v2/Git-工具-重写历史
+
 ### `Git`可以按目录拉取，可以拆分并保留提交记录
 
 ```shell
@@ -17,13 +35,7 @@ git pull origin master
 ```
 https://git-scm.com/docs/git-sparse-checkout
 
-
-### 使用`.gitkeep`空文件在`Git`中保留空文件夹
-
-### 提交时注意作者和邮箱是否正确，避免不统一
-
-https://git-scm.com/book/zh/v2/Git-工具-重写历史
-
+## 避免冲突
 
 ### 把会出现多人同时添加的公共文件拆分成多个
 
