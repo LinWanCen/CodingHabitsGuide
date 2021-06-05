@@ -23,30 +23,12 @@ https://www.zhihu.com/question/411565676
 [docguide]:https://github.com/google/styleguide/blob/gh-pages/docguide/style.md
 
 
-## 文件后缀说明
-
-CodeReview (CR) 是代码审核的指南
-
-UnitTest 是开发写在项目里的单元测试的指南
-
-Test 是测试指南
-
-SCM 是版本控制、变更控制等，例如`Git`、`SVN`等，也称为`CVS`或`VCS`
-
-
 ## 具体内容
-
-
-### 通用
-
-[CodeReview](md/CodeReview.md)
-
-[Test](md/Test.md)⛔
 
 
 ### Java
 
-[Java](md/Java.md)
+[Java 编码注释运维](java/README.md)
 
 [日志指南](log/README.md)
 
@@ -57,9 +39,22 @@ SCM 是版本控制、变更控制等，例如`Git`、`SVN`等，也称为`CVS`�
 
 ### DB
 
-[数据库 DB](md/DB.md)
+[数据库 DB](db/README.md)
 
-[SQL](md/SQL.md)
+
+### 代码管理
+
+[分支管理 Branch](DevOps/Branch.md)
+
+[软件配置管理 SCM（版本控制&变更控制）](DevOps/SCM.md)
+
+[代码审核 CodeReview](DevOps/CodeReview.md)
+
+语义化版本 2.0.0：https://semver.org/lang/zh-CN/
+
+Git Maven 项目忽略配置参考：[.gitignore](.gitignore)
+
+https://mirrors.edge.kernel.org/pub/software/scm/git/docs/gitignore.html
 
 
 ### JS
@@ -76,15 +71,3 @@ Vue 风格指南：https://cn.vuejs.org/v2/style-guide/
 
 使用 PlantUML 编写时序图等理清关系：https://plantuml.com/zh/sequence-diagram
 
-
-### 代码管理
-
-[分支管理 Branch](md/Branch.md)
-
-[软件配置管理 SCM（版本控制&变更控制）](md/SCM.md)
-
-语义化版本 2.0.0：https://semver.org/lang/zh-CN/
-
-Git Maven 项目忽略配置参考：[.gitignore](.gitignore)
-
-https://mirrors.edge.kernel.org/pub/software/scm/git/docs/gitignore.html

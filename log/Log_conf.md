@@ -72,7 +72,7 @@ log4j2
 
 ### 计算好日志最大磁盘占用，避免磁盘被占满
 
-log4j2：
+log4j2.xml：
 http://logging.apache.org/log4j/log4j-2.8/manual/appenders.html#Log_Archive_Retention_Policy:_Delete_on_Rollover
 `IfAccumulatedFileSize`的和
 ```xml
@@ -87,7 +87,7 @@ http://logging.apache.org/log4j/log4j-2.8/manual/appenders.html#Log_Archive_Rete
       </DefaultRolloverStrategy>
 ```
 
-logback：
+logback.xml：
 `<totalSizeCap>`的和
 
 

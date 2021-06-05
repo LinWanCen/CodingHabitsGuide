@@ -18,6 +18,7 @@ TestNG assertEquals(实际, 期望, 可选描述)
 - JUnit 的 before 每个类前都会运行一次
 - TestNG 支持依赖
 
+
 ### 所有测试类都应最终继承本项目的某个类
 
 本项目的这个类再继承公共模块，方便改造
@@ -35,6 +36,7 @@ TestNG assertEquals(实际, 期望, 可选描述)
 | @Test(priority | @Order(1)   |              |              |             |
 | @Ignore        | @Disabled   | @Ignore      |              |             |
 | @Test(groups   | @Tag        | @Categories  |              |             |
+
 
 ### 注意 JUnit 方法是否静态的要求
 
