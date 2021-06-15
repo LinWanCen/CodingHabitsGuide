@@ -88,9 +88,9 @@
         <configuration>
           <compilerArgs>
             <arg>-bootclasspath</arg>
-            <arg>${env.JAVA_HOME}/jre/lib/rt.jar</arg>
+            <arg>${java.home}/lib/rt.jar</arg>
             <arg>-extdirs</arg>
-            <arg>${libPath}${path.separator}${env.JAVA_HOME}/jre/lib/${path.separator}${env.JAVA_HOME}/jre/lib/ext/</arg>
+            <arg>${libPath}${path.separator}${java.home}/lib/${path.separator}${java.home}/lib/ext/</arg>
           </compilerArgs>
         </configuration>
       </plugin>

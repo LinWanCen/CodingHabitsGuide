@@ -17,6 +17,7 @@
         <version>3.0</version>
         <configuration>
           <compilerArguments>
+            <bootclasspath>${java.home}/lib/rt.jar</bootclasspath>
             <extdirs>${project.basedir}/src/main/webapp/WEB-INF/lib</extdirs>
           </compilerArguments>
         </configuration>
@@ -42,11 +43,14 @@
 并且确保 JAVA_HOME 环境变量指向的是有这些类的 Oracle JDK，而不是 openjdk，
 可以参考 [Maven_sun/pom.xml](pom.xml)
 
+${env.JAVA_HOME}/jre/lib/rt.jar 是环境变量，如果没设置会保留原样
+
+${java.home}/lib/rt.jar 是 java.lang.System.getProperties() 中的，同样还有${user.name}
 
 javac 参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html
 
 #### -bootclasspath 引导类路径
-根据指定的引导类集交叉编译。与用户类路径一样，引导类路径条目由冒号（:)分隔，并且可以是目录，JAR归档文件或ZIP归档文件。
+根据指定的引导类集交叉编译。与用户类路径一样，引导类路径条目由冒号分隔，并且可以是目录，JAR归档文件或ZIP归档文件。
 
 #### -extdirs 目录
 针对指定的扩展目录进行编译。目录是目录的冒号(Windows 分号)分隔列表。将搜索指定目录中的每个 JAR 存档以搜索类文件。
