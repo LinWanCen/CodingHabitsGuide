@@ -9,7 +9,7 @@
 
 ### `maven-compiler-plugin`添加`jar`路径时必须添加`${project.basedir}`，否则在`Linux`下会找不到包
 
-3.1 前，注意这里是`compilerArguments`，后面有个`s`
+3.1 前(JDK6)，注意这里是`compilerArguments`，后面有个`s`
 ```xml
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
