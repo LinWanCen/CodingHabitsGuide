@@ -4,7 +4,7 @@
 
 [表设计](DB_table.md)
 
-[注释排查](DB_COMMENT.md)
+[注释排查](DB_comment.md)
 
 
 ## 增删改查
@@ -27,7 +27,7 @@
 
 ## 运维
 
-[锁排查](DB_LOCK.md)
+[锁排查](DB_lock.md)
 
 
 ## 流水线执行 SQL 脚本
