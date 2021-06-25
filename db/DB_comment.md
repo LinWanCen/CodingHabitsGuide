@@ -1,5 +1,7 @@
 # 数据库注释整治
 
+### 开发测试环境的表与字段必须有注释
+
 ## Oracle
 
 [Oracle 注释检查 SQL](comment/Oracle_comment.sql)

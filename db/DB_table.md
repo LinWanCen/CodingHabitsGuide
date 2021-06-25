@@ -17,8 +17,3 @@ import javax.validation.constraints.NotNull;
 
 
 ### 大表考虑分区，可以非常简单地提升整个性能
-
-
-### 开发测试环境的表与字段必须有注释
-
-[DB_COMMENT.md](DB_COMMENT.md)
