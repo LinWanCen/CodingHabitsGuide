@@ -48,12 +48,12 @@ pipeline {
             script {
               if (env.projectKey != null && env.projectKey != '' && env.sonarURL != null && env.sonarLogin != null) {
                 sh """sonar-scanner \
-                    -Dsonar.sources=. \
-                    -Dsonar.java.binaries=. \
-                    -Dsonar.projectName="${projectName}" \
-                    -Dsonar.projectKey=${projectKey} \
-                    -Dsonar.host.url=${sonarURL} \
-                    -Dsonar.login=${sonarLogin}"""
+                    -D sonar.sources=. \
+                    -D sonar.java.binaries=. \
+                    -D sonar.projectName="${projectName}" \
+                    -D sonar.projectKey=${projectKey} \
+                    -D sonar.host.url=${sonarURL} \
+                    -D sonar.login=${sonarLogin}"""
               }
             }
           }

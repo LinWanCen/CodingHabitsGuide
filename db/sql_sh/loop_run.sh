@@ -19,7 +19,7 @@ do
   echo
   echo \# $IP
 
-  DIR_arr=(`ls -rd 20*`)
+  DIR_arr=(`ls -d 20*`)
 
   for DIR in ${DIR_arr[@]}
   do

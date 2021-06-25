@@ -42,22 +42,13 @@ https://www.zhihu.com/question/411565676
 [数据库 DB](db/README.md)
 
 
-### 代码管理
+### DevOps
 
-[分支管理 Branch](DevOps/Branch.md)
-
-[软件配置管理 SCM（版本控制&变更控制）](DevOps/SCM.md)
-
-[代码审核 CodeReview](DevOps/CodeReview.md)
-
-语义化版本 2.0.0：https://semver.org/lang/zh-CN/
-
-Git Maven 项目忽略配置参考：[.gitignore](.gitignore)
-
-https://mirrors.edge.kernel.org/pub/software/scm/git/docs/gitignore.html
+[DevOps](DevOps/README.md)
 
 
 ### JS
+
 JS(JavaScript) / ES5(ECMAScript 5.0) / ES6
 
 ES lint：http://eslint.cn/docs/rules/

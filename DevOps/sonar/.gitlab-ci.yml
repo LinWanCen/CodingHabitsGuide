@@ -1,13 +1,13 @@
 # 其他项目不依赖时用 test 其他项目依赖时用 install，
 variables:
-  phase: test -Dmaven.compiler.failOnError=false -Dmaven.test.failure.ignore=true
-#  phase: install -Dmaven.compiler.failOnError=false -Dmaven.test.failure.ignore=true
+  phase: test -D maven.compiler.failOnError=false -D maven.test.failure.ignore=true
+#  phase: install -D maven.compiler.failOnError=false -D maven.test.failure.ignore=true
 
 # 顶级群组环境变量（保护+隐藏）
 # sonarLogin=
 # 顶级群组环境变量
-# sonar_server=-Dsonar.host.url=http://ip:port -Dsonar.login=${sonarLogin}
-# MAVEN_CLI_OPTS=-V -U -fae -DinstallAtEnd=true -DdeployAtEnd=true
+# sonar_server=-D sonar.host.url=http://ip:port -D sonar.login=${sonarLogin}
+# MAVEN_CLI_OPTS=-V -U -fae -D installAtEnd=true -D deployAtEnd=true
 # Maven 命令行参数官方文档：http://maven.apache.org/ref/3.6.3/maven-embedder/cli.html
 
 sonar:
@@ -16,9 +16,9 @@ sonar:
     - if [ ! -f pom.xml ]; then
         if [ "$sonar_server" != "" ]; then
           sonar-scanner
-            -Dsonar.sources=. -Dsonar.java.binaries=.
-            -Dsonar.projectName="$CI_PROJECT_PATH $CI_PROJECT_PATH_SLUG scanner"
-            -Dsonar.projectKey=${CI_PROJECT_PATH_SLUG}
+            -D sonar.sources=. -D sonar.java.binaries=.
+            -D sonar.projectName="$CI_PROJECT_PATH $CI_PROJECT_PATH_SLUG scanner"
+            -D sonar.projectKey=${CI_PROJECT_PATH_SLUG}
             $sonar_server;
         fi;
       else
@@ -32,8 +32,8 @@ sonar:
 
         if [ "$sonar_server" != "" ]; then
           mvn $MAVEN_CLI_OPTS $setting_file $prepare_phase $phase $report_phase $sonar_phase
-            -Dsonar.projectName="$CI_PROJECT_PATH $CI_PROJECT_PATH_SLUG"
-            -Dsonar.projectKey=$CI_PROJECT_PATH_SLUG
+            -D sonar.projectName="$CI_PROJECT_PATH $CI_PROJECT_PATH_SLUG"
+            -D sonar.projectKey=$CI_PROJECT_PATH_SLUG
             $sonar_server;
         else
           mvn $MAVEN_CLI_OPTS $setting_file $prepare_phase $phase $report_phase;

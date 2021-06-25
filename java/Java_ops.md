@@ -1,5 +1,9 @@
 # Java 运维
 
+### -D 和参数名之间空一格
+
+避免 IDE 拼写检查误判
+
 ### 从 class 查看 JDK 版本
 
 Windows

@@ -112,9 +112,15 @@ resolution will not be reattempted until the update interval of 远程仓库ID h
 假设配置`repository`时使用`central`作为`id`，那么就不能不同仓库用不同的 mirror。
 
 
-### 仓库只下载稳定版本，需做好配置
+### 经常修改的包应使用区间依赖，如`[1.0, 2)`
+
+区间依赖官方文档：https://maven.apache.org/pom.html#dependency-version-requirement-specification
+
+### 仓库只下载稳定版本，需做好配置，建议配置在 pom.xml 文件中
 
 仓库默认只下载稳定版本，如果 Nexus 代理是混合仓库的话需要在`pom.xml`或`settings.xml`中设置仓库快照为启用。
+
+由于不同项目对包的要求不一样，建议在 pom.xml 中配置，在某些 DevOps 平台上也更好处理。
 
 settings 镜像配置官方文档：https://maven.apache.org/settings.html#mirrors
 
@@ -125,22 +131,24 @@ settings.xml
 <settings>
   <mirrors>
     <mirror>
-      <id>mirrorId</id>
-      <mirrorOf>company_or_app_name</mirrorOf>
-      <name>Nexus</name>
-      <url>http://my.repository.com/repository/company_or_app_name/</url>
+      <mirrorOf>*</mirrorOf>
+      <id>aliyunmaven</id>
+      <name>阿里云公共仓库</name>
+      <url>https://maven.aliyun.com/repository/public</url>
     </mirror>
   </mirrors>
 
   <profiles>
     <profile>
       <id>company_or_app_name</id>
-      <activation> <activeByDefault>true</activeByDefault> </activation>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <repositories>
         <repository>
-          <id>company_or_app_name</id>
-          <name>Nexus</name>
-          <url>http://my.repository.com/repository/company_or_app_name/</url>
+          <id>aliyunmaven</id>
+          <name>阿里云公共仓库</name>
+          <url>https://maven.aliyun.com/repository/public</url>
           <releases>
             <enabled>true</enabled>
             <updatePolicy>always</updatePolicy>
@@ -166,9 +174,9 @@ pom.xml
 <project>
   <repositories>
     <repository>
-      <id>company_or_app_name</id>
-      <name>Nexus</name>
-      <url>http://my.repository.com/repository/company_or_app_name/</url>
+      <id>aliyunmaven</id>
+      <name>阿里云公共仓库</name>
+      <url>https://maven.aliyun.com/repository/public</url>
       <releases>
         <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>
@@ -181,5 +189,28 @@ pom.xml
       </snapshots>
     </repository>
   </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>aliyunmaven</id>
+      <name>阿里云公共仓库</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 </project>
+```
+
+为了外网项目方便复制，上面把 id, name, url 都改成阿里的，原文如下
+```xml
+        <repository>
+          <id>company_or_app_name</id>
+          <name>Nexus</name>
+          <url>http://my.repository.com/repository/company_or_app_name/</url>
+        </repository>
 ```

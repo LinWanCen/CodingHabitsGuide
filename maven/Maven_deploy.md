@@ -45,7 +45,7 @@
 ### 推送私服用命令行代替 distributionManagement 配置
 
 ```shell script
-mvn deploy -DaltDeploymentRepository=deploymentRepo::default::发布URL
+mvn deploy -D altDeploymentRepository=deploymentRepo::default::发布URL
 ```
 
 使用脚本配置发布 URL，而且 URL 应使用变量：

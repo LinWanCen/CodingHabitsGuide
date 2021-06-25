@@ -4,10 +4,10 @@
 
 ```shell
 mvn -V -U org.jacoco:jacoco-maven-plugin:prepare-agent verify org.jacoco:jacoco-maven-plugin:report org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-  -Dsonar.projectName="${projectName}" \
-  -Dsonar.projectKey=${projectKey} \
-  -Dsonar.host.url=${sonarURL} \
-  -Dsonar.login=${sonarLogin} \
+  -D sonar.projectName="${projectName}" \
+  -D sonar.projectKey=${projectKey} \
+  -D sonar.host.url=${sonarURL} \
+  -D sonar.login=${sonarLogin} \
   -s /usr/share/maven/conf/settings-自定义后缀.xml
 mvn org.codehaus.mojo:findbugs-maven-plugin:findbugs
 mvn pmd:pmd
@@ -16,8 +16,8 @@ mvn checkstyle:checkstyle
 ```
 后面几句省略了其他参数，如果编译或单元测试困难可以加下面的参数
 ```shell
-  -Dmaven.compiler.failOnError=false \
-  -Dmaven.test.failure.ignore=true \
+  -D maven.compiler.failOnError=false \
+  -D maven.test.failure.ignore=true \
 ```
 
 ### 非 Maven 官方插件使用全名而不是配置插件群组

@@ -58,10 +58,10 @@ pipeline {
             script {
               if (env.projectKey != null && env.projectKey != '' && env.sonarURL != null && env.sonarLogin != null) {
                 env.sonarPhase = """org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-                    -Dsonar.projectName="${projectName}" \
-                    -Dsonar.projectKey=${projectKey} \
-                    -Dsonar.host.url=${sonarURL} \
-                    -Dsonar.login=${sonarLogin}"""
+                    -D sonar.projectName="${projectName}" \
+                    -D sonar.projectKey=${projectKey} \
+                    -D sonar.host.url=${sonarURL} \
+                    -D sonar.login=${sonarLogin}"""
               } else {
                 env.sonarPhase = ''
               }

@@ -3,6 +3,10 @@
 
 ### 脚本放在 scripts 目录，可以使用 resources 来替换参数拷贝到指定目录
 
+不包括 SQL 等可以独立拉取执行的脚本
+
+按 Maven 规范放入 `${basedir}/src/main/scripts`(`${project.build.scriptSourceDirectory}`)
+
 官方标准目录结构：http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html
 
 ```xml
@@ -16,7 +20,7 @@
       </resource>
       <!-- 替换脚本中的参数 -->
       <resource>
-        <directory>${basedir}/src/main/scripts</directory>
+        <directory>${project.build.scriptSourceDirectory}</directory>
         <filtering>true</filtering>
         <targetPath>${project.build.directory}/zip</targetPath>
       </resource>
