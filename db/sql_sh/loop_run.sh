@@ -2,6 +2,7 @@
 # 避免 Oracle 乱码
 export NLS_LANG="AMERICAN_AMERICA.AL32UTF8"
 
+INDEX_arr=(0 1)
 SUB_DIR_arr=(model1 model2)
 USER_arr=(model1 model2)
 PASS_arr=(model1 model2)
@@ -19,7 +20,7 @@ do
   echo
   echo \# $IP
 
-  DIR_arr=(`ls -d 20*`)
+  DIR_arr=(`ls -d 2*/*/*/*`)
 
   for DIR in ${DIR_arr[@]}
   do
@@ -27,8 +28,9 @@ do
     echo \#\# cd $DIR
     cd $DIR
 
-    for i in 0 1 2 3
+    for i in ${INDEX_arr[@]}
     do
+      # -a -e 通用 -d 目录 -f 文件 -s 不为空 -z 为空 -r 可读 -w 可写 -x 可执行
       if [ ! -d "${SUB_DIR_arr[$i]}" ];then
         continue
       fi

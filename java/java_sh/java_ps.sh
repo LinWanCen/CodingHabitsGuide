@@ -1,9 +1,9 @@
 # 进程时间 标题
-ps -ef | head -1
+ps -ef | head -1 | grep -v grep
 #  UID        PID  PPID  C STIME TTY          TIME CMD
 
 # 进程CPU和内存 标题
-ps aux | head -1
+ps aux | head -1 | grep -v grep
 # USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 # 其中STAT状态位常见的状态字符有
 # S | 处于休眠状态
@@ -16,10 +16,10 @@ ps aux | head -1
 
 
 # 进程时间
-ps -ef | grep java
+ps -ef | grep java | grep -v grep
 
-# 进程CPU内存与时长
-ps aux | grep java
+# 进程CPU内存与时长，COMMAND 可能被截断影响 grep
+ps aux | grep java | grep -v grep
 
 # 停止应用后修正用户
 chown -R admin:admin /home/admin

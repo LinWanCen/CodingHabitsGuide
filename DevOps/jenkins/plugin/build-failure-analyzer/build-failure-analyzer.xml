@@ -10,9 +10,10 @@
           <id>33f6c822-8c9b-467f-ba6d-82d960682062</id>
           <name>存在找不到依赖的缓存记录</name>
           <description>本地仓库有 .lastUpdated 和 _remote 文件，💡跑下删除脚本
-找不到：${1, 2}
+找不到：${1, 3}
 远程仓库：${1, 4}
-所在项目：${1, 1}</description>
+所在项目：${1, 1}
+无法解析：${1, 2}</description>
           <comment>
 </comment>
           <categories class="java.util.Arrays$ArrayList">
@@ -26,10 +27,6 @@
             </com.sonyericsson.jenkins.plugins.bfa.model.indication.BuildLogIndication>
           </indications>
           <modifications class="linked-list">
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 06:36:40.158 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
           </modifications>
         </com.sonyericsson.jenkins.plugins.bfa.model.FailureCause>
       </entry>
@@ -38,13 +35,14 @@
         <com.sonyericsson.jenkins.plugins.bfa.model.FailureCause>
           <id>f31d7984-2ed1-4b14-90c4-22f741db0abd</id>
           <name>找不到依赖</name>
-          <description>找不到：${1, 2}
+          <description>找不到：${1, 3}
   若为 SNAPSHOT，💡检查 settings.xml 是否配置 profile，
 远程仓库：${1, 4}
   💡检查远程仓库是否正确，是否有这个 jar，是否大小写一致，是否断网
-所在项目：${1, 1}</description>
+所在项目：${1, 1}
+无法解析：${1, 2}</description>
           <comment>
-</comment>
+          </comment>
           <categories class="java.util.Arrays$ArrayList">
             <a class="string-array">
               <string>依赖问题</string>
@@ -56,38 +54,6 @@
             </com.sonyericsson.jenkins.plugins.bfa.model.indication.BuildLogIndication>
           </indications>
           <modifications class="linked-list">
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 06:46:05.17 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 03:17:58.777 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 03:08:51.951 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 03:07:44.25 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 02:43:37.213 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 02:42:10.301 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 02:33:10.88 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 02:32:11.560 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
           </modifications>
         </com.sonyericsson.jenkins.plugins.bfa.model.FailureCause>
       </entry>
@@ -105,7 +71,8 @@
 💡检查 jar 是否包含这个符号，没有的话：
   💡可能是非 SNAPSHOT 的 jar 更新代码没升级版本的不规范操作导致，
   💡检查 Nexus 的 group 配置了之前上传的仓库在前面导致没更新</description>
-          <comment></comment>
+          <comment>
+          </comment>
           <categories class="java.util.Arrays$ArrayList">
             <a class="string-array">
               <string>编译问题</string>
@@ -117,46 +84,6 @@
             </com.sonyericsson.jenkins.plugins.bfa.model.indication.BuildLogIndication>
           </indications>
           <modifications class="linked-list">
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 09:19:34.333 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 09:16:25.857 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 03:18:14.1 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 02:25:23.298 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 02:22:31.915 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 02:20:36.579 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 02:18:08.399 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 02:15:50.687 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 01:57:43.961 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-            <com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
-              <user>linwancheng</user>
-              <time>2021-05-14 01:54:07.915 UTC</time>
-            </com.sonyericsson.jenkins.plugins.bfa.model.FailureCauseModification>
           </modifications>
         </com.sonyericsson.jenkins.plugins.bfa.model.FailureCause>
       </entry>
@@ -168,7 +95,8 @@
           <description>找不到 ${1, 1}
 💡检查所使用的 JDK 版本是否有这个包（一般在 Oracle JDK）
 💡在 pom 文件中是否配置 compile 插件的 -extdirs</description>
-          <comment></comment>
+          <comment>
+          </comment>
           <categories class="java.util.Arrays$ArrayList">
             <a class="string-array">
               <string>编译问题</string>
@@ -193,7 +121,8 @@
           <id>b27705a4-3051-4881-acb3-fa5a68eecb11</id>
           <name>Maven构建报错</name>
           <description>${1, 1}</description>
-          <comment></comment>
+          <comment>
+          </comment>
           <indications>
             <com.sonyericsson.jenkins.plugins.bfa.model.indication.BuildLogIndication>
               <pattern>(.*Failed to execute goal.*)</pattern>
@@ -211,7 +140,8 @@
   </knowledgeBase>
   <nrOfScanThreads>3</nrOfScanThreads>
   <maxLogSize>0</maxLogSize>
-  <testResultCategories></testResultCategories>
+  <testResultCategories>
+  </testResultCategories>
   <sodVariables>
     <minimumSodWorkerThreads>0</minimumSodWorkerThreads>
     <maximumSodWorkerThreads>0</maximumSodWorkerThreads>
