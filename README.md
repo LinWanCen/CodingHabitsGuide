@@ -4,8 +4,8 @@ for DevTestOps and DevSecOps
 本指南是对 [谷歌风格指南][styleguide] 和 [阿里巴巴Java开发手册][p3c] 等指南的补充，
 请在阅读本指南的同时请阅读这些指南。
 
-因为域名污染进不了 xxx.github.io 的同学请修改 DNS 后刷新缓存，参考： 
-https://www.zhihu.com/question/411565676
+因为域名污染进不了 xxx.github.io 的同学请修改 DNS 后刷新缓存，
+[知乎设置教程](https://www.zhihu.com/question/411565676) 。
 
 [styleguide]:https://github.com/google/styleguide
 [p3c]:https://github.com/alibaba/p3c
@@ -28,7 +28,7 @@ https://www.zhihu.com/question/411565676
 
 ### Java
 
-[Java 编码注释运维](java/README.md)
+[Java 开发与运维](java/README.md)
 
 [日志指南](log/README.md)
 
@@ -49,16 +49,14 @@ https://www.zhihu.com/question/411565676
 
 ### JS
 
-JS(JavaScript) / ES5(ECMAScript 5.0) / ES6
+[ES lint](http://eslint.cn/docs/rules/)
 
-ES lint：http://eslint.cn/docs/rules/
-
-Vue 风格指南：https://cn.vuejs.org/v2/style-guide/
+[Vue 风格指南](https://cn.vuejs.org/v2/style-guide/)
 
 
 ### 设计
 
-设计上的基本常识 (dubbo)：http://dubbo.apache.org/zh-cn/docs/dev/principals/general-knowledge.html
+[设计上的基本常识 (dubbo)](http://dubbo.apache.org/zh-cn/docs/dev/principals/general-knowledge.html)
 
-使用 PlantUML 编写时序图等理清关系：https://plantuml.com/zh/sequence-diagram
+[使用 PlantUML 编写时序图等理清关系](https://plantuml.com/zh/sequence-diagram)
 
