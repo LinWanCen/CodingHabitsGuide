@@ -1,3 +1,6 @@
+# JAVA 进程，-l 启动类或包 -m 方法参数 -v JVM参数 -q 只显示 PID
+jps -mlvV | grep -v Jps
+
 # 进程时间 标题
 ps -ef | head -1 | grep -v grep
 #  UID        PID  PPID  C STIME TTY          TIME CMD
@@ -14,7 +17,6 @@ ps aux | head -1 | grep -v grep
 # T | 停止或被追踪
 # Z | 僵尸进程
 
-
 # 进程时间
 ps -ef | grep java | grep -v grep
 
@@ -23,3 +25,9 @@ ps aux | grep java | grep -v grep
 
 # 停止应用后修正用户
 chown -R admin:admin /home/admin
+
+# 启动目录
+readlink -f /proc/$PID/cwd
+
+# 启动程序位置
+readlink -f /proc/$PID/exe

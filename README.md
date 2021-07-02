@@ -1,5 +1,5 @@
 # DevTestOpsGuide
-for DevTestOps and DevSecOps
+for DevTestOps, DevSecOps, BizDevOps
 
 本指南是对 [谷歌风格指南][styleguide] 和 [阿里巴巴Java开发手册][p3c] 等指南的补充，
 请在阅读本指南的同时请阅读这些指南。
