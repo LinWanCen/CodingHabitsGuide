@@ -1,0 +1,20 @@
+# 业务表研究学习方法
+
+```sql
+-- 重点列
+SELECT COLUMN_NAME, COLUMN_COMMENT, count(*)
+FROM information_schema.COLUMNS c
+GROUP BY c.COLUMN_NAME, c.COLUMN_COMMENT
+ORDER BY count(*) DESC;
+
+-- 重点表
+SELECT TABLE_SCHEMA, TABLE_NAME, TABLE_COMMENT,
+       DATA_LENGTH / 1024 / 1024 AS DATA_MB,
+       INDEX_LENGTH / 1024 / 1024 AS INDEX_MB,
+       (DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024 AS ALL_MB,
+       TABLE_ROWS
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA not in ('information_schema', 'performance_schema', 'mysql', 'sys')
+AND TABLE_ROWS > 10000
+ORDER BY TABLE_SCHEMA, TABLE_ROWS DESC;
+```

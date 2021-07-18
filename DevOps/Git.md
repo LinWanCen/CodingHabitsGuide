@@ -1,4 +1,4 @@
-# 软件配置管理 SCM（版本控制&变更控制）
+# Git
 
 ## `SVN`与`Git`
 
@@ -18,6 +18,11 @@ IDEA 提示”部分忽略的目录未从索引和搜索中排除“时，\
 ```gitignore
 .svn
 ```
+
+Git Maven 项目忽略配置参考：[.gitignore](../.gitignore)
+
+官方文档：
+https://mirrors.edge.kernel.org/pub/software/scm/git/docs/gitignore.html
 
 
 ### 使用`.gitkeep`空文件在`Git`中保留空文件夹

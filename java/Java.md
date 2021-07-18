@@ -47,6 +47,14 @@ https://github.com/google/styleguide/blob/gh-pages/javaguide.html
 
 ### 开始结束中相同的代码应该抽取或使用切面，以免忘记且减少重复
 
+### 锁释放要放在 finally
+
+- 独占锁：`reentrantLock.unlock();`
+- 共享锁（多个线程共享）
+  - 写独占读共享：`reentrantReadWriteLock.unlock();`
+  - 有限资源：`semaphore.release(n);`
+  - 总数`countDownLatch.countDown();`
+
 `CountDownLatch`与`MDC`(Mapped Diagnostic Context):
 ```java
 public class MyTask implements Runnable {
@@ -65,3 +73,9 @@ public class MyTask implements Runnable {
     }
 }
 ```
+
+### 多线程读的变量要用 volatile 修饰，特别是双检锁单例
+
+保证修改后能被及时读取（可见性）
+
+汇编中会多一个 lock 前缀的指令，把 CPU 缓存写到内存，并让其他核缓存该内存地址的数据无效

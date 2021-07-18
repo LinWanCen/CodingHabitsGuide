@@ -1,5 +1,16 @@
 # Java 运维
 
+JAVA 命令官方文档：
+https://docs.oracle.com/en/java/javase/16/docs/specs/man/java.html#advanced-options-for-java
+
+JDK 工具官方文档：
+https://docs.oracle.com/en/java/javase/16/docs/specs/man/index.html
+
+Java 故障排除官方文档：
+https://docs.oracle.com/en/java/javase/16/troubleshoot/general-java-troubleshooting.html
+
+
+
 ### -D 和参数名之间空一格
 
 避免 IDE 拼写检查误判
@@ -39,6 +50,10 @@ od -x UniqueValidator.class |awk 'NR==1'
 JAVA_OPTS="$JAVA_OPTS -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=../logs"
 ```
 
+hprof 文件另外一种获得方式：
+```shell
+jmap -dump:[live,]format=b,file=<filename>
+```
 
 ### 【推荐】测试环境开启远程调试
 
@@ -59,3 +74,21 @@ if [ "$1" = "jpda" ] ; then
 ./catalina.sh jpda start
 ```
 （助记：java 的 j，pda掌上电脑)
+
+
+## 使用 Oracle JDK 或者自装 jstack 等工具
+
+否则到查问题的时候发现 Open JDK 默认没有相关工具就很麻烦
+
+```shell
+# 找到占用CPU的进程PID
+top
+# 找到占用CPU的线程PID
+top -Hp $PID
+# 把线程PID转换为16进制
+printf "%x\n" $SUB_PID
+# 找到线程堆栈并保存文本
+jstack -l $PID | grep $SUB_PID_16 -A 30
+# 或者直接保存完整jstack
+jstack -l $PID >> jstack.txt
+```
