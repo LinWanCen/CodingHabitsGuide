@@ -1,5 +1,9 @@
 # 查询
 
+### selectOne 必须命中唯一索引
+
+根据墨菲定律，如果不限制总会有脏数据导致查出多条导致报错
+
 ### 大规模查询下`WHERE`/`ON`的字段需要命中索引
 
 写数据库语句时看表结构是个好习惯，如果没有命中需注释说明原因。
@@ -39,11 +43,14 @@ xml写法：
 
 注解写法：
 ```java
+@Mapper
+class demo {
     /**
      * 调用需要加 @Transactional 注解，否则会立即关闭连接导致游标报 A Cursor is already closed.
      * <br/>fetchSize="-2147483648" 是 流式读 避免 数据库服务器表空间爆满 和 程序堆内存不足错误
      */
     @Options(fetchSize = Integer.MIN_VALUE)
     @Select("SELECT * FROM TEST_TABLE")
-    Cursor<Map<String, String>> cursorAllStream();
+    Cursor<Map<String, String>> cursorAll();
+}
 ```
