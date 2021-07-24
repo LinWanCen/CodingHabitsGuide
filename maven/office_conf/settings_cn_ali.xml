@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+根据一项或多项贡献者许可协议授权给 Apache 软件基金会 (ASF)。
+有关版权所有权的更多信息，请参阅随本作品分发的 NOTICE 文件。
+ASF 根据 Apache 许可证 2.0 版（“许可证”）向您授予此文件的许可证；
+除非遵守许可，否则您不得使用此文件。
+您可以在 http:www.apache.orglicensesLICENSE-2.0 获得许可证的副本
+除非适用法律要求或书面同意，否则根据许可证分发的软件是按“原样”分发的，
+没有任何保证或条件KIND，无论是明示的还是暗示的。
+请参阅许可证以了解管理许可证下的许可和限制的特定语言。
+-->
+
+<!--
+ | 这是Maven的配置文件。它可以在两个级别指定:
+ |
+ |  1. 用户级别. 这个 settings.xml 文件为单个用户提供配置，
+ |              通常在 ${user.home}/.m2/settings.xml.
+ |
+ |                 提醒：这个位置可以被 命令行 选项覆盖:
+ |
+ |                 -s /path/to/user/settings.xml
+ |
+ |  2. 全局级别. 此 settings.xml 文件为机器上的所有 Maven 用户提供配置
+ |              （假设他们都使用相同的 Maven 安装）。
+ |              它通常在 ${maven.conf}/settings.xml.
+ |
+ |              注意：这个位置可以被 命令行 选项覆盖:
+ |
+ |                 -gs /path/to/global/settings.xml
+ |
+ | 此示例文件中的部分旨在为您提供一个充分利用 Maven 安装的运行开始。
+ | 在适当的情况下，提供默认值（未指定设置时使用的值）。 |
+ |-->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <!-- 本地存储库
+   | 本地存储库的路径 maven 将用于存储工件。
+   |
+   | 默认: ${user.home}/.m2/repository
+  <localRepository>/path/to/local/repo</localRepository>
+  -->
+  <localRepository>D:/MAVEN_REPO/public</localRepository>
+
+  <!-- 交互模式
+   | 这将决定 maven 是否在需要输入时提示您。如果设置为false，
+   | maven 将为相关参数使用合理的默认值，可能基于某些其他设置。
+   |
+   | 默认: true
+  <interactiveMode>true</interactiveMode>
+  -->
+
+  <!-- 离线
+   | 确定 maven 在执行构建时是否应尝试连接到网络。
+   | 这将对工件下载、工件部署等产生影响。
+   |
+   | Default: false
+  <offline>false</offline>
+  -->
+
+  <!-- 插件组
+   | 这是一个额外的组标识符列表，在通过前缀解析插件时将被搜索，即在调用像“mvn prefix:goal”这样的命令行时。
+   | 如果列表中尚未包含组标识符“org.apache.maven.plugins”和“org.codehaus.mojo”，
+   | Maven 将自动添加这些标识符。
+   |-->
+  <pluginGroups>
+    <!-- 插件组
+     | 指定用于插件查找的进一步组标识符。
+    <pluginGroup>com.your.plugins</pluginGroup>
+    -->
+  </pluginGroups>
+
+  <!-- 代理
+   | 这是可在本机上用于连接到网络的代理列表。
+   | 除非另有说明（通过系统属性或命令行开关），将使用此列表中标记为活动的第一个代理规范。
+   |-->
+  <proxies>
+    <!-- 代理
+     | 一个代理的规范，用于连接到网络。
+     |
+    <proxy>
+      <id>optional</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <username>proxyuser</username>
+      <password>proxypass</password>
+      <host>proxy.host.net</host>
+      <port>80</port>
+      <nonProxyHosts>local.net|some.host.com</nonProxyHosts>
+    </proxy>
+    -->
+  </proxies>
+
+  <!-- 服务器
+   | 这是一个身份验证配置文件列表，由系统中使用的服务器 ID 键控。
+   | 只要 maven 必须连接到远程服务器，就可以使用身份验证配置文件。
+   |-->
+  <servers>
+    <!-- 服务器
+     | 指定连接到特定服务器时使用的身份验证信息，由系统内的唯一名称标识（由下面的“id”属性引用）。
+     |
+     | 注意: 您应该指定 username/password 或 privateKey/passphrase，因为这些配对是一起使用的。
+     |
+    <server>
+      <id>deploymentRepo</id>
+      <username>repouser</username>
+      <password>repopwd</password>
+    </server>
+    -->
+
+    <!-- 另一个示例，使用密钥进行身份验证。
+    <server>
+      <id>siteServer</id>
+      <privateKey>/path/to/private/key</privateKey>
+      <passphrase>optional; leave empty if not used.</passphrase>
+    </server>
+    -->
+  </servers>
+
+  <!-- 镜像
+   | 这是用于从远程存储库下载工件的镜像列表。
+   |
+   | 它是这样工作的：一个 POM 可以声明一个存储库，用于解析某些工件。
+   | 但是，这个存储库有时可能会遇到流量大的问题，因此人们已将其镜像到多个地方。
+   |
+   | 该存储库定义将具有唯一 id，因此我们可以为该存储库创建镜像引用，用作备用下载站点。
+   | 镜像站点将成为该存储库的首选服务器。
+   |-->
+  <mirrors>
+    <!-- 镜像
+     | 指定要使用的存储库镜像站点而不是给定的存储库。
+     | 此镜像服务的存储库具有与此镜像的 mirrorOf 元素匹配的 ID。
+     | ID 用于继承和直接查找目的，并且在一组镜像中必须是唯一的。
+     |
+    <mirror>
+      <id>mirrorId</id>
+      <mirrorOf>repositoryId</mirrorOf>
+      <name>Human Readable Name for this Mirror.</name>
+      <url>http://my.repository.com/repo/path</url>
+    </mirror>
+     -->
+
+    <mirror>
+      <id>ali_mirror</id>
+      <mirrorOf>*</mirrorOf>
+      <name>阿里云公共仓库</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+    </mirror>
+
+  </mirrors>
+
+  <!-- 配置
+   | 这是一个配置文件列表，可以通过多种方式激活，并且可以修改构建过程。
+   | settings.xml 中提供的配置文件旨在提供本地机器特定的路径和存储库位置，允许构建在本地环境中工作。
+   |
+   | 例如，如果你有一个集成测试插件 比如 cactus 它需要知道你的 Tomcat 实例安装在哪里，
+   | 您可以在此处提供一个变量，以便在构建过程中取消引用该变量以配置 cactus 插件。
+   |
+   | 如上所述，可以通过多种方式激活配置文件。
+   | 其中一种方法 - 本文档的 activeProfiles 部分 (settings.xml) - 将在稍后讨论。
+   | 另一种方式本质上依赖于系统参数的检测，或者匹配属性的特定值，或者只是测试它的存在。
+   | 配置文件也可以通过 JDK 版本前缀激活，其中在 JDK 版本“1.4.2_07”上执行构建时，“1.4”值可能会激活配置文件。
+   | 最后，可以直接从命令行指定活动配置文件列表。
+   |
+   | NOTE: 对于 settings.xml 中定义的配置文件，您只能指定工件存储库， 插件存储库，以及用作 POM 中插件的配置变量的自由格式属性。
+   |
+   |-->
+  <profiles>
+    <!-- 配置
+     | 指定一组对构建过程的介绍，使用上述一个或多个机制激活。
+     | 用于继承目的，并通过以下方式激活配置文件 <activatedProfiles/> 或命令行，配置文件必须具有唯一的 ID。
+     |
+     | 鼓励配置文件识别的最佳实践是对配置文件使用一致的命名约定，
+     | 例如'env-dev'、'env-test'、'env-production'、'user-jdcasey'、'user-brett'等。
+     | 这将使了解引入的配置文件集试图完成的内容更加直观，
+     | 特别是当您只有一个用于调试的配置文件 ID 列表时。
+     |
+     | 此配置文件示例使用 JDK 版本来触发激活，并提供特定于 JDK 的 repo。
+    <profile>
+      <id>jdk-1.4</id>
+
+      <activation>
+        <jdk>1.4</jdk>
+      </activation>
+
+      <repositories>
+        <repository>
+          <id>jdk14</id>
+          <name>Repository for JDK 1.4 builds</name>
+          <url>http://www.myhost.com/maven/jdk14</url>
+          <layout>default</layout>
+          <snapshotPolicy>always</snapshotPolicy>
+        </repository>
+      </repositories>
+    </profile>
+    -->
+
+    <profile>
+      <id>ali_repo</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+        <repository>
+          <id>ali</id>
+          <name>阿里云公共仓库</name>
+          <url>https://maven.aliyun.com/repository/public</url>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>ali</id>
+          <name>阿里云公共仓库</name>
+          <url>https://maven.aliyun.com/repository/public</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+
+    <!--
+     | 这是另一个配置文件，由系统属性“target-env”激活，值为“dev”，
+     | 它提供了到 Tomcat 实例的特定路径。
+     | 要使用它，您的插件配置可能看起来像：
+     |
+     | ...
+     | <plugin>
+     |   <groupId>org.myco.myplugins</groupId>
+     |   <artifactId>myplugin</artifactId>
+     |
+     |   <configuration>
+     |     <tomcatLocation>${tomcatPath}</tomcatLocation>
+     |   </configuration>
+     | </plugin>
+     | ...
+     |
+     | 注意: 如果您只想在有人将 'target-env' 设置为任何内容时注入此配置，您可以在 activation-property 中省略 <value> 。
+     |
+    <profile>
+      <id>env-dev</id>
+
+      <activation>
+        <property>
+          <name>target-env</name>
+          <value>dev</value>
+        </property>
+      </activation>
+
+      <properties>
+        <tomcatPath>/path/to/tomcat/instance</tomcatPath>
+      </properties>
+    </profile>
+    -->
+  </profiles>
+
+  <!-- 激活配置
+   | 适用于所有构建的配置文件列表。
+   |
+  <activeProfiles>
+    <activeProfile>alwaysActiveProfile</activeProfile>
+    <activeProfile>anotherAlwaysActiveProfile</activeProfile>
+  </activeProfiles>
+  -->
+</settings>

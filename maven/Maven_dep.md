@@ -132,7 +132,7 @@ settings.xml
   <mirrors>
     <mirror>
       <mirrorOf>*</mirrorOf>
-      <id>aliyunmaven</id>
+      <id>ali_mirror</id>
       <name>阿里云公共仓库</name>
       <url>https://maven.aliyun.com/repository/public</url>
     </mirror>
@@ -140,13 +140,13 @@ settings.xml
 
   <profiles>
     <profile>
-      <id>company_or_app_name</id>
+      <id>ali_repo</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
       <repositories>
         <repository>
-          <id>aliyunmaven</id>
+          <id>ali</id>
           <name>阿里云公共仓库</name>
           <url>https://maven.aliyun.com/repository/public</url>
           <releases>
@@ -174,7 +174,7 @@ pom.xml
 <project>
   <repositories>
     <repository>
-      <id>aliyunmaven</id>
+      <id>ali</id>
       <name>阿里云公共仓库</name>
       <url>https://maven.aliyun.com/repository/public</url>
       <releases>
@@ -192,15 +192,9 @@ pom.xml
 
   <pluginRepositories>
     <pluginRepository>
-      <id>aliyunmaven</id>
+      <id>ali</id>
       <name>阿里云公共仓库</name>
       <url>https://maven.aliyun.com/repository/public</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
     </pluginRepository>
   </pluginRepositories>
 </project>
@@ -211,6 +205,6 @@ pom.xml
         <repository>
           <id>company_or_app_name</id>
           <name>Nexus</name>
-          <url>http://my.repository.com/repository/company_or_app_name/</url>
+          <url>https://my.repository.com/repository/company_or_app_name/</url>
         </repository>
 ```
