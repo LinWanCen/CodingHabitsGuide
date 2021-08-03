@@ -5,7 +5,7 @@ yum install iproute iproute-doc
 # -p 进程（在 Windows 是协议），Windows 用 -o 显示 PID 当不能显示进程名
 # -t 只 TCP
 # -u 只 UDP
-# -l 只监听无IP
+# -l 只监听无IP（Windows 没有）
 
 # 下面的命令换成 netstat 也可以
 # netstat Windows 也可以用, grep 用 findstr

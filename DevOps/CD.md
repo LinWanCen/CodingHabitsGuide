@@ -14,3 +14,9 @@ certutil -hashfile 文件路径 md5
 # Linux
 md5sun 文件路径
 ```
+
+### 应检查环境配置是否有错
+
+```shell
+find . -regex ".*\.\(properties\|yml\|xml\)" | xargs grep "测试环境地址"
+```

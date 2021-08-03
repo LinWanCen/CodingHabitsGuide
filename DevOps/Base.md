@@ -39,6 +39,13 @@ nameserver 域名服务器2的IP
 vim /etc/hostname
 ```
 
+### host 文件的 IP 补空格对齐 16 位
+
+```
+#xx.xxx.xxx.xxx hostname
+```
+
+
 ### 采购的网络火墙等系统要有人性化的申请流程
 
 否则后期手工开火墙、开账号等低价值的工作让人心烦意乱
