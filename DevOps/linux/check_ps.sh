@@ -1,3 +1,6 @@
+# 启动进程检查
+# 启动进程正则 KEY_PATTERN=java|tomcat
+# 启动进程数 ROWS=1
 ps -ef | grep -E "PID|$KEY_PATTERN" | grep -v grep
 echo
 # COMMAND 可能被截断影响 grep，仅用于查看

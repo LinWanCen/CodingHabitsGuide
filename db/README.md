@@ -42,3 +42,9 @@
 [MySQL 引用脚本执行示例](sql_sh/mysql_run.sql)
 
 [Oracle 引用脚本执行示例](sql_sh/oracle_run.sql)
+
+## 基础知识
+
+[事务](transaction.md)
+
+[MySQL 优化官方文档](https://dev.mysql.com/doc/refman/8.0/en/optimization.html)

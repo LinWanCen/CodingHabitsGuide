@@ -1,0 +1,4 @@
+[Nexus]
+name=Nexus
+baseurl=http://IP:Port/repository/yum/$releasever/os/$basearch/
+gpgcheck=0

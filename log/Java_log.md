@@ -59,3 +59,7 @@ private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger($t
 ```
 thisClass: className()
 
+
+### SQL 日志可以帮助查询导致数据变化的原因
+
+查询数据库记录更新时间对应的 update xxx 的日志排查问题

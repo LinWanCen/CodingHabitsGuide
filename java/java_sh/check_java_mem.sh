@@ -3,6 +3,7 @@ echo 0 | tee /proc/sys/kernel/yama/ptrace_scope
 
 JPS=`jps -mlvV | grep -v Jps`
 
+JVM_COUNT=0
 JVM_MEM_SUM=0
 for PID in `echo "$JPS" | awk '{print $1}'`
 do
@@ -27,11 +28,15 @@ do
   # 显示时转换为 GB
   echo `echo "${JVM_MEM}" | awk '{print $1/1024/1024/1024" G"}'` $J_INFO `echo "$JPS" | grep $PID`
   # 单位是 b
+  JVM_COUNT=$((JVM_COUNT+=1))
   JVM_MEM_SUM=$((JVM_MEM_SUM+=JVM_MEM))
 done
 
+# 显示 jvm 进程数
+echo JVM_COUNT: "$JVM_COUNT"
+
 # 显示 jvm 内存总需求
-echo "`echo "${JVM_MEM_SUM}" | awk '{print $1/1024/1024/1024" G"}'`"
+echo TOTAL_JVM_MAX: "`echo "${JVM_MEM_SUM}" | awk '{print $1/1024/1024/1024" G"}'`"
 
 # 机器内存默认 k 为单位，所以要 * 1024
 TOTAL_MEM=`free|grep Mem|awk '{print $2*1024}'`

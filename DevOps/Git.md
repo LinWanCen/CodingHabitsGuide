@@ -31,6 +31,19 @@ https://mirrors.edge.kernel.org/pub/software/scm/git/docs/gitignore.html
 
 https://git-scm.com/book/zh/v2/Git-工具-重写历史
 
+
+## 创建分支时打标签标记分支初始代码
+
+方便列代码清单
+```sh
+git tag 分支名_init
+git push origin 分支名_init
+git diff tag1 tag2  --name-only > diff.txt
+# 中文乱码解决 先改下配置
+git config --global core.quotepath false
+```
+
+
 ### `Git`可以按目录拉取，可以拆分并保留提交记录
 
 ```shell

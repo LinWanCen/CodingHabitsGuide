@@ -59,10 +59,10 @@
     <!-- maven.resources.overwrite 没设置 true 时不会覆盖，即前面的优先 -->
     <resources>
       <resource>
-        <directory>${basedir}/src/main/resources_${envSuffix}</directory>
+        <directory>${basedir}/src/main/env/${envSuffix}</directory>
       </resource>
       <resource>
-        <directory>${basedir}/src/main/resources_filtered</directory>
+        <directory>${basedir}/src/main/env/filtered</directory>
         <filtering>true</filtering>
       </resource>
       <resource>
@@ -80,7 +80,7 @@
 
     <plugins>
 
-      <!-- jar 都迁移 maven dependencies 的话可以取消这个插件 -->
+      <!-- 读本地 和 Oracle JDK 的 jar，迁移 maven dependencies 的话可以取消这个插件 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

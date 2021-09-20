@@ -7,7 +7,7 @@
 会使与他有关的项目难以编译
 
 
-### `maven-compiler-plugin`添加`jar`路径时必须添加`${project.basedir}`，否则在`Linux`下会找不到包
+### `maven-compiler-plugin`添加`jar`路径时必须添加`${project.basedir}`，否则在`Linux`和`Mac`下会找不到包
 
 3.1 前(JDK6)，注意这里是`compilerArguments`，后面有个`s`
 ```xml
@@ -118,13 +118,13 @@ resolution will not be reattempted until the update interval of 远程仓库ID h
 
 ### 仓库只下载稳定版本，需做好配置，建议配置在 pom.xml 文件中
 
-仓库默认只下载稳定版本，如果 Nexus 代理是混合仓库的话需要在`pom.xml`或`settings.xml`中设置仓库快照为启用。
+- 仓库默认只下载稳定版本，如果 Nexus 代理是混合仓库的话需要在`pom.xml`或`settings.xml`中设置仓库快照为启用。
+- 由于不同项目对包的要求不一样，建议在 pom.xml 中配置，在某些 DevOps 平台上也更好处理。
+- 如果 settings.xml 配置了 mirror，那么 pom.xml 配置了也无效，需要对这个 mirror ID 配置快照启用。
 
-由于不同项目对包的要求不一样，建议在 pom.xml 中配置，在某些 DevOps 平台上也更好处理。
 
-settings 镜像配置官方文档：https://maven.apache.org/settings.html#mirrors
-
-settings 仓库配置官方文档：https://maven.apache.org/settings.html#repositories
+- settings 镜像配置官方文档：https://maven.apache.org/settings.html#mirrors
+- settings 仓库配置官方文档：https://maven.apache.org/settings.html#repositories
 
 settings.xml
 ```xml

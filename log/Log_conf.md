@@ -14,6 +14,13 @@
 使用 log4j2 和 logback 的官方文档示例值 30 秒，
 这里的时间间隔太短怕有细微的性能消耗，太长的话运维修改需等待太久生效。
 
+### 检查日志的读权限以便用查询账号时可用
+
+粗暴的一键授权
+```shell
+find . -regex ".*\.log\|.*\.log\..*|catalina.out" | xargs -i chmod -R +r {}
+```
+
 ## Pattern
 
 ### pattern 和路径前后缀等多处重复的值配置为参数方便修改
@@ -58,37 +65,71 @@ http://logging.apache.org/log4j/2.x/manual/async.html
 
 ### 配置启动时清理，避免从未触发滚动导致清理永远都不会被执行
 
-cleanHistoryOnStart
-http://logback.qos.ch/manual/appenders.html#tbrpCleanHistoryOnStart
-
-log4j2
+log4j2:
 ```xml
-<Policies>
-  <OnStartupTriggeringPolicy/>
-  <TimeBasedTriggeringPolicy/>
-  <SizeBasedTriggeringPolicy size="10 MB"/>
-</Policies>
+<OnStartupTriggeringPolicy/>
 ```
+
+logback:
+```xml
+<cleanHistoryOnStart>true</cleanHistoryOnStart>
+```
+http://logback.qos.ch/manual/appenders.html#tbrpCleanHistoryOnStart
 
 ### 计算好日志最大磁盘占用，避免磁盘被占满
 
 log4j2.xml：
-http://logging.apache.org/log4j/log4j-2.8/manual/appenders.html#Log_Archive_Retention_Policy:_Delete_on_Rollover
 `IfAccumulatedFileSize`的和
 ```xml
-      <DefaultRolloverStrategy max="20">
-        <Delete basePath="${baseDir}" maxDepth="4">
-          <IfFileName glob="**/app.*.log.gz"/>
-          <IfAny>
-            <IfLastModified age="200d"/>
-            <IfAccumulatedFileSize exceeds="5GB"/>
-          </IfAny>
-        </Delete>
-      </DefaultRolloverStrategy>
+<RollingRandomAccessFile name="root" fileName="${baseDir}/root.log" filePattern="${prefix}/root/root.${suffix}">
+  <PatternLayout>
+    <Pattern>${pattern}</Pattern>
+    <Charset>UTF-8</Charset>
+  </PatternLayout>
+  <Policies>
+    <TimeBasedTriggeringPolicy/>
+    <OnStartupTriggeringPolicy/>
+    <SizeBasedTriggeringPolicy size="10 MB"/>
+  </Policies>
+  <DefaultRolloverStrategy max="20">
+    <Delete basePath="${baseDir}" maxDepth="4">
+      <IfFileName glob="**/root.*.log.gz"/>
+      <IfAny>
+        <IfLastModified age="15d"/>
+        <IfAccumulatedFileSize exceeds="5GB"/>
+      </IfAny>
+    </Delete>
+  </DefaultRolloverStrategy>
+</RollingRandomAccessFile>
 ```
+http://logging.apache.org/log4j/log4j-2.8/manual/appenders.html#Log_Archive_Retention_Policy:_Delete_on_Rollover
 
 logback.xml：
 `<totalSizeCap>`的和
+```xml
+<configuration scan="true" debug="false" scanPeriod="30 seconds">
+  <appender name="root" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${baseDir}/root.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${prefix}/root/root.${suffix}</fileNamePattern>
+      <maxFileSize>10MB</maxFileSize>
+      <maxHistory>15</maxHistory>
+      <totalSizeCap>5GB</totalSizeCap>
+      <cleanHistoryOnStart>true</cleanHistoryOnStart>
+    </rollingPolicy>
+    <encoder>
+      <pattern>${pattern}</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <appender name="async-root" class="ch.qos.logback.classic.AsyncAppender">
+    <discardingThreshold>0</discardingThreshold>
+    <queueSize>1024</queueSize>
+    <appender-ref ref="root"/>
+  </appender>
+</configuration>
+```
 
 
 ## log4j2 配置规范
@@ -103,6 +144,12 @@ http://logging.apache.org/log4j/2.x/manual/async.html
 
 
 ## logback 配置规范
+
+### 脱敏工具类需在`springProperty`外的参数前
+
+```xml
+  <conversionRule conversionWord="msg" converterClass="com.demo.LogConverter"/>
+```
 
 ### 需要配置关闭钩子
 

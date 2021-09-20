@@ -16,7 +16,7 @@
     <resources>
       <!-- 分环境打包 -->
       <resource>
-        <directory>${basedir}/src/main/resources_${envSuffix}</directory>
+        <directory>${basedir}/src/main/env/${envSuffix}</directory>
       </resource>
       <!-- 替换脚本中的参数 -->
       <resource>
@@ -150,7 +150,7 @@
                   <fileset dir="${basedir}/src/main/resources"/>
                 </copy>
                 <copy todir="${project.build.directory}/zip" overwrite="true">
-                  <fileset dir="${basedir}/src/main/resources_${envSuffix}"/>
+                  <fileset dir="${basedir}/src/main/env/${envSuffix}"/>
                 </copy>
                 <zip destfile="${project.build.directory}/${project.artifactId}.zip">
                   <fileset dir="${project.basedir}/../" includes="README.md"/>

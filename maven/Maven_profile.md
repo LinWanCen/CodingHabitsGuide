@@ -13,7 +13,7 @@
     <!-- maven.resources.overwrite 没设置 true 时不会覆盖，即前面的优先 -->
     <resources>
       <resource>
-        <directory>${basedir}/src/main/resources_${envSuffix}</directory>
+        <directory>${basedir}/src/main/env/${envSuffix}</directory>
       </resource>
       <resource>
         <directory>${basedir}/src/main/resources</directory>
