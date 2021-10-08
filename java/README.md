@@ -7,7 +7,13 @@ https://docs.oracle.com/javase/8/docs/
 
 [Java 结构](Java_structure.md)
 
-[Java 杂项](Java.md)
+[Java API](Java_structure.md)
+
+[Java 代码风格](Java_style.md)
+
+[Java 集合类](Java_Collection.md)
+
+[Java 多线程](Java_Concurrent.md)
 
 [Java 注释](Java_comment.md)
 
