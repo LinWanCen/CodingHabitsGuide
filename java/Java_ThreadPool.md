@@ -28,7 +28,7 @@ handler
 - DiscardPolicy 忽略策略
 
 
-```java
+```
 // availableProcessors() 该值在特定的虚拟机调用期间可能发生更改。
 // 因此，对可用处理器数目很敏感的应用程序应该不定期地轮询该属性，并相应地调整其资源用法。
 int corePoolSize = Runtime.getRuntime().availableProcessors() * threadMultiplier;

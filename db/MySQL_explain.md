@@ -1,5 +1,7 @@
 # MySQL explain
 
+官方文档：https://dev.mysql.com/doc/refman/8.0/en/explain-output.html
+
 都是越小越好
 
 | explain       | 说明                     |

@@ -22,7 +22,7 @@
 - 多版本并发控制 MVCC Multiversion Concurrency Control
     - DB_TRX_ID 最近增改事务ID
     - DB_ROLL_PTR 回滚指针，上一版本 0x...
-    - DB_ROW_ID 自增ID，没有主键时的聚簇索引
+    - DB_ROW_ID 自增ID，没有主键时的聚簇索引，select _rowid
     - DELETED_BIT 删除
 
 

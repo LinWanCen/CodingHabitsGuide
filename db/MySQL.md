@@ -8,6 +8,8 @@
   - 异步IO（asynchronous IO，AIO）
   - 刷新邻接页（flush neighbor page）
 
+primary key = unique + not null
+
 稠密索引、稀疏索引
 
 - 回表查询：先在非聚集索引上查询到主键值，然后拿着主键值回到表里查聚簇索引
