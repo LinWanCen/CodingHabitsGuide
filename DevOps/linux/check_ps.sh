@@ -17,7 +17,14 @@ echo "Z | 僵尸进程"
 echo
 pgrep -f "$KEY_PATTERN" | xargs -l -i echo top -n 1 -bHp {}
 
-GREP_ROWS=`ps -ef | grep -E "$KEY_PATTERN" | grep -v grep | wc -l`
+GREP_TEXT=`ps -ef | grep -E "$KEY_PATTERN" | grep -v grep |`
+GREP_ROWS=`echo "$GREP_TEXT" | wc -l`
+
+GREP_LEN=${#GREP_TEXT}
+if [ "$GREP_LEN" = 0 ] ; then
+  GREP_ROWS=0;
+fi
+
 if [ "$GREP_ROWS" != $ROWS ] ; then
   exit 1;
 fi

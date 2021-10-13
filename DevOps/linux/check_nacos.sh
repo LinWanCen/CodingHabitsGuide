@@ -22,6 +22,12 @@ GREP_TEXT=`echo "$CHECK_RES" | grep -E "$KEY_WORD"`
 echo $GREP_TEXT
 
 GREP_ROWS=`echo "$GREP_TEXT" | wc -l`
+
+GREP_LEN=${#GREP_TEXT}
+if [ "$GREP_LEN" = 0 ] ; then
+  GREP_ROWS=0;
+fi
+
 if [ "$GREP_ROWS" != $ROWS ] ; then
   exit 1;
 fi
