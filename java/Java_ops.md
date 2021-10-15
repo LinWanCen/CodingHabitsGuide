@@ -11,9 +11,9 @@ https://docs.oracle.com/en/java/javase/16/troubleshoot/general-java-troubleshoot
 
 
 
-### -D 和参数名之间空一格
+### Maven 的 -D 和参数名之间空一格
 
-避免 IDE 拼写检查误判
+避免 IDE 拼写检查误判，但是 JVM 参数不能加空格而且必须放在 -jar 前面
 
 ### 从 class 查看 JDK 版本
 
