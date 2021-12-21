@@ -12,8 +12,17 @@ public class PathUtils {
 
     private static final Logger LOG = LoggerFactory.getLogger(PathUtils.class);
 
-    @SuppressWarnings("ConstantConditions")
-    public static final String CLASS_PATH = ClassLoader.getSystemClassLoader().getResource("").getPath();
+    public static final String CLASS_PATH;
+
+    static {
+        @SuppressWarnings("ConstantConditions")
+        String path = ClassLoader.getSystemClassLoader().getResource("").getPath();
+        try {
+            path = URLDecoder.decode(path, "UTF-8");
+        } catch (Exception ignored) {
+        }
+        CLASS_PATH = path;
+    }
 
     public static String canonicalPath(File file) {
         try {

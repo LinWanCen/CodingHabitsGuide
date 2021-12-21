@@ -1,6 +1,8 @@
 # Maven pom 基本配置
 
-### 中文团队下项目需添加名称标签 `<name>${project.artifactId} | 简称1 | 简称2</name>`
+### 中文团队下项目需添加名称标签 `<name>${project.artifactId} 简称1 简称2</name>`
+
+有些工具会用 name 来当文件名，所以不能包含`\/:*?"<>|`
 
 简称可以是中文或英文，这样在`Maven`日志、`SonarQube`报告、`IDEA`侧边栏等显示都更为友好
 
@@ -70,7 +72,7 @@ https://maven.apache.org/pom.html#A_final_note_on_Inheritance_v._Aggregation
 
   <packaging>pom</packaging>
 
-  <name>${project.artifactId} | 日志演示聚合项目</name>
+  <name>${project.artifactId} 日志演示聚合项目</name>
   <description>用于一起编译，不要以此为父项目</description>
 
   <modules>

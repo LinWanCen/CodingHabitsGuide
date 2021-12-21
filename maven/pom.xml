@@ -10,7 +10,7 @@
 
   <packaging>war</packaging>
 
-  <name>${project.artifactId} | 中文简称</name>
+  <name>${project.artifactId} 中文简称</name>
   <description>中文全称 英文全称</description>
 
   <properties>
@@ -70,7 +70,7 @@
       </resource>
       <!-- 编译 src/main/java 目录下的 xml 文件 -->
       <resource>
-        <directory>src/main/java</directory>
+        <directory>${basedir}/src/main/java</directory>
         <includes>
           <include>**/*.xml</include>
         </includes>

@@ -7,6 +7,11 @@
 会使与他有关的项目难以编译
 
 
+### 别人经常需要排除的依赖应设置为可选`<optional>true</optional>`
+
+比如日志，如果 log4j2 和 logback 都存在就会导致 slf4j 报 `Class path contains multiple SLF4J bindings.`
+
+
 ### `maven-compiler-plugin`添加`jar`路径时必须添加`${project.basedir}`，否则在`Linux`和`Mac`下会找不到包
 
 3.1 前(JDK6)，注意这里是`compilerArguments`，后面有个`s`
