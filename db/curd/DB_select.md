@@ -47,7 +47,7 @@ xml写法：
 class demo {
     /**
      * 调用需要加 @Transactional 注解，否则会立即关闭连接导致游标报 A Cursor is already closed.
-     * <br/>fetchSize="-2147483648" 是 流式读 避免 数据库服务器表空间爆满 和 程序堆内存不足错误
+     * <br>fetchSize="-2147483648" 是 流式读 避免 数据库服务器表空间爆满 和 程序堆内存不足错误
      */
     @Options(fetchSize = Integer.MIN_VALUE)
     @Select("SELECT * FROM TEST_TABLE")
