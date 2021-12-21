@@ -9,6 +9,10 @@
 Spring MVC 中可以统一设置：
 [AddResponseHeaderFilter.java](springboot/config/AddResponseHeaderFilter.java)
 
+或者在单个服务中
+```
+@RequestMapping(produces = "application/json;charset=UTF-8")
+```
 
 ### 时间应返回时间戳数字或多浏览器兼容性的字符串
 
