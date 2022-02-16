@@ -38,10 +38,11 @@ https://phauer.com/2020/package-by-feature/
 set([^(]++)\([^.]++\.get\1\(
 ```
 
-### 实例类的方法定义成 protected 而不是 private
+### 使用 protected 而不是 private
 
-体现对拓展开放，否则用继承拓展调用 private 方法就不得不复制代码，
-Sonar 也是提示改成 protected 而不是 private。
+1. private 不便于单元测试。
+2. 体现对拓展开放，否则装饰者继承无法使用 private 的内容，就不得不复制代码。
+3. Sonar 也是提示改成 protected 而不是 private。
 
 
 ### 养成 Utils 类第一句就 private 构造方法的习惯
