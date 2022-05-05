@@ -15,3 +15,13 @@
 sed -in "s/\$"{"key}/$key/g" pom.xml
 grep "行标识字符" pom.xml
 ```
+
+## 文件列表
+
+```
+# Linux
+find -name *.java
+
+# Windows 傻逼 fin(d)str
+dir /s/b finstr *.java
+```

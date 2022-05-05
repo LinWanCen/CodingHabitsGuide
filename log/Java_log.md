@@ -15,12 +15,12 @@ info 级别下的输出应该是比较干净的，可以降级的都降级，不
 全文搜索每个级别的代码量
 
 ```regexp
-\.(trace|debug|info|warn|error)[^;]*;
-\.(trace)[^;]*;
-\.(debug)[^;]*;
-\.(info)[^;]*;
-\.(warn)[^;]*;
-\.(error)[^;]*;
+\.(trace|debug|info|warn|error)\([^;]*;
+\.(trace)\([^;]*;
+\.(debug)\([^;]*;
+\.(info)\([^;]*;
+\.(warn)\([^;]*;
+\.(error)\([^;]*;
 ```
 
 

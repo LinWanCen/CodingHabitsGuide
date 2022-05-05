@@ -77,10 +77,9 @@ javac 参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/windo
 
 依赖问题：
 ```
-Could not resolve dependencies for project 不能解析的依赖模块gav:
-The following artifacts could not be resolved:
-不能解析的模块gav1, 不能解析的模块gav2:
-Could not find artifact 找不到的包gav in 远程仓库ID (远程仓库URL)
+Could not resolve dependencies for project 出现问题的模块:
+The following artifacts could not be resolved: 不能解析的依赖列表:
+Could not find artifact 【找不到的包】 in 远程仓库ID (远程仓库URL)
 ```
 
 编译问题：

@@ -18,6 +18,13 @@ https://phauer.com/2020/package-by-feature/
 ### 使用`package-info.java`配合文档注释说明包的作用
 
 
+## 类
+
+### 少用嵌套类，不同文件更直观
+
+### 一个文件的代码行数一个屏幕（Google 王争）
+
+
 ## 方法
 
 ### 不应该在一个文件中有多个方法，除非方法之间没有依赖，或者由上到下依赖
@@ -56,7 +63,8 @@ if ... {
     a = ...
 } else if {
     a = ... 
-}
+} else if {
+    ...
 ```
 
 抽取成：
@@ -66,5 +74,10 @@ if (...) {
     return ...
 } else if {
     return ... 
-}
+} else if {
+    ...
 ```
+
+while 预定义除外
+
+### switch 较多时抽取成方法，减少 break
