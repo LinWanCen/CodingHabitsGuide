@@ -16,12 +16,33 @@ sed -in "s/\$"{"key}/$key/g" pom.xml
 grep "行标识字符" pom.xml
 ```
 
+## IP 查机器
+```batch
+# 助记语：你不替食堂熬汤
+nbtstat -A IP
+```
+、
+
+## 端口查进程
+```batch
+# 最后一列为 PID
+netstat -ano | findstr "端口"
+tasklist | finstr "PID"
+```
+
 ## 文件列表
 
-```
+```sh
 # Linux
 find -name *.java
 
 # Windows 傻逼 fin(d)str
 dir /s/b finstr *.java
+```
+
+## 剪切板
+```batch
+echo|set/p=文本|clip
+# 或
+set/p="文本"<nul|clip
 ```

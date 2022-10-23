@@ -13,11 +13,7 @@
 
 版本控制 & 变更控制
 
-[Git](Git.md)
-
-[GitLab](GitLab.md)
-
-[分支管理 Branch](Branch.md)
+[Git 相关](git/README.md)
 
 [语义化版本 2.0.0](https://semver.org/lang/zh-CN/)
 

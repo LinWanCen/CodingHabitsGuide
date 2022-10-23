@@ -23,3 +23,8 @@ import javax.validation.constraints.NotNull;
 
 - 如果数据中台不能接管所有报表时，微服务后无法跨库 JOIN 将会引起很多麻烦
 - 需要查用的不记在本系统甚至没有系统记录将
+
+
+### 表前加库名可以方便后人接手
+
+虽然可以在`information_schema.TABLES`查

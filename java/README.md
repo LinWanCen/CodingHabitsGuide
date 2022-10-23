@@ -1,33 +1,11 @@
 # Java
 
-Java 8 官方文档：
-https://docs.oracle.com/javase/8/docs/
+[Java 代码风格](coding/README.md)
 
-## 文档
+[JDK 知识点](jdk/README.md)
 
-[Java 结构](Java_structure.md)
+[Java 框架](java_framework/README.md)
 
-[Java API](Java_structure.md)
+[Java 测试](java_test/README.md)
 
-[Java 代码风格](Java_style.md)
-
-[Java 集合类](Java_Collection.md)
-
-[Java 多线程](Java_Concurrent.md)
-
-[Java 注释](Java_comment.md)
-
-[Java 运维](Java_ops.md)
-
-[Java Spring 框架使用](Java_Spring.md)
-
-[Java Spring 分环境启动配置](Java_Spring_profile.md)
-
-
-## 脚本
-
-[端口匹配进程](java_sh/java_port.sh)
-
-[运行中的 java 配置最大总内存](java_sh/java_port.sh)
-
-[检查日志磁盘配置](java_sh/java_log.sh)
+[Java 运维](java_ops/README.md)

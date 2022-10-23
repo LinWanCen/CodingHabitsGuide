@@ -28,11 +28,9 @@ for DevTestOps, DevSecOps, BizDevOps
 
 ### Java
 
-[Java 开发与运维](java/README.md)
+[Java 风格 API 框架 测试 运维](java/README.md)
 
 [日志指南](log/README.md)
-
-[Java 测试](java_test/README.md)
 
 [Maven 指引](maven/README.md)
 
@@ -42,9 +40,14 @@ for DevTestOps, DevSecOps, BizDevOps
 [数据库 DB](db/README.md)
 
 
+### Test
+
+[测试](test/README.md)
+
+
 ### DevOps
 
-[DevOps](DevOps/README.md)
+[自动化编译部署等 DevOps](DevOps/README.md)
 
 
 ### JS

@@ -16,7 +16,7 @@ MAVEN_REPO/ticm
 
 ### 使用域名服务器，必须使用域名
 
-否则后续所有文档、服务配置都充斥着 IP 会很难受
+否则后续所有文档、服务配置都充斥着 IP 会很难受、特别是公司搬迁更换 IP 时
 
 ### 设置域名解析超时时间
 
@@ -45,6 +45,13 @@ vim /etc/hostname
 #xx.xxx.xxx.xxx hostname
 ```
 
+### HTTPS 站点注意内网根证书校验，避免打开缓慢，红色不安全导致不能保存密码
+
+- 没有根证书服务器但有根证书时可以双击安装到受信任的根证书
+- 存量系统没有根证书时可以在 Chrome 快捷方式后面增加忽略 HTTPS 证书校验
+```
+-ignore-certificate-errors
+```
 
 ### 采购的网络火墙等系统要有人性化的申请流程
 
@@ -60,3 +67,6 @@ https://directory.apache.org/
 Gitlab、Jenkins、Jira、Confluence、Graylog
 
 或者用 GitLab 的 OAuth 2.0 作为 Jenkins、Sonar 等系统的单点登录
+
+
+### 使用 Git 分享测试环境 DBeaver 数据库连接配置，避免每个人都花时间去问连接

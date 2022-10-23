@@ -1,31 +1,4 @@
-## Java 结构
-
-## 包
-
-### 按功能划分包而不是按层划分包
-
-https://phauer.com/2020/package-by-feature/
-
-
-### 不同模块中的包路径应相同，模块只是隔离依赖关系
-
-在 IDEA 中可以切换为包视图，在这个视图下相关功能的类应在一起，体现高内聚。
-
-不同的模块是为了隔离依赖，比如 DDD 中 proxy 模块依赖了外部 api 和内部 api 提供服务，
-其他模块不能 import 外部 api 的内容，就不会被外部 api 污染，体现低耦合。
-
-
-### 使用`package-info.java`配合文档注释说明包的作用
-
-
-## 类
-
-### 少用嵌套类，不同文件更直观
-
-### 一个文件的代码行数一个屏幕（Google 王争）
-
-
-## 方法
+## Java 方法
 
 ### 不应该在一个文件中有多个方法，除非方法之间没有依赖，或者由上到下依赖
 
@@ -81,3 +54,14 @@ if (...) {
 while 预定义除外
 
 ### switch 较多时抽取成方法，减少 break
+
+
+### 修饰符按谷歌规范的顺序
+
+```
+public protected private abstract default static final transient volatile synchronized native strictfp
+```
+
+https://google.github.io/styleguide/javaguide.html#s4.8.7-modifiers
+
+https://github.com/google/styleguide/blob/gh-pages/javaguide.html

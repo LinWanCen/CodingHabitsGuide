@@ -14,3 +14,5 @@ primary key = unique + not null
 
 - 回表查询：先在非聚集索引上查询到主键值，然后拿着主键值回到表里查聚簇索引
 - 索引覆盖：返回字段在多列索引中可以避免回表查询，explain 的 extra 为 using index
+
+### limit 的第一个参数从 0 开始，可省略，第二个参数是返回条数
