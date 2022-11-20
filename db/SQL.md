@@ -18,8 +18,8 @@
 
 ```sh
 # -v 显示日志 -U 禁止无 where 更新
-mysql -v -U -uroot -proot -h $IP -P 3306 --default-character-set=utf8mb4_bin < mysql_run.sql
-set character set utf8mb4_bin;
+mysql -v -U -uroot -proot -h $IP -P 3306 --default-character-set=utf8mb4 < mysql_run.sql
+set character set utf8mb4;
 
 # 避免 Oracle 乱码
 export NLS_LANG="AMERICAN_AMERICA.AL32UTF8"

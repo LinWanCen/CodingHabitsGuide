@@ -42,7 +42,7 @@ do
       echo \#\#\# start ${USER_arr[$i]}/***@$IP:1521/ORCL @oracle_run.sql
 #      sqlplus ${USER_arr[$i]}/${PASS_arr[$i]}@$IP:1521/ORCL @oracle_run.sql
         # -v 显示日志 -U 禁止无 where 更新
-#        mysql -v -U -u${USER_arr[$i]} -p${PASS_arr[$i]} -h $IP -P 3306 --default-character-set=utf8mb4_bin < mysql_run.sql
+#        mysql -v -U -u${USER_arr[$i]} -p${PASS_arr[$i]} -h $IP -P 3306 --default-character-set=utf8mb4 < mysql_run.sql
       echo \#\#\# end ${USER_arr[$i]}/***@$IP:1521/ORCL @oracle_run.sql
       cd ..
     done

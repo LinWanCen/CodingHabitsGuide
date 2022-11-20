@@ -1,10 +1,14 @@
 -- 创建时添加注释
-CREATE TABLE `COMMON_SEQ`
+CREATE TABLE `db1_table0`
 (
-    `APP_CODE` char(6) NOT NULL COMMENT '应用编码',
-    UNIQUE KEY `COMMON_SEQ_APP_CODE_uindex` (`APP_CODE`)
+    `id`          bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+    `create_time` datetime(6)     NOT NULL DEFAULT CURRENT_TIMESTAMP(6) COMMENT '创建时间',
+    `update_time` datetime(6)     NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6) COMMENT '更新时间',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `db1_table1_id_unique_index` (`id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4_bin COMMENT ='流水号表';
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_bin COMMENT ='表名';
 
 -- 添加表注释
 ALTER TABLE COMMON_SEQ COMMENT '流水号表';
@@ -30,7 +34,7 @@ WHERE TABLE_SCHEMA not in ('information_schema', 'performance_schema', 'mysql', 
 # 查询列在哪个表与注释
 SELECT c.TABLE_SCHEMA, c.TABLE_NAME, t.TABLE_COMMENT, COLUMN_NAME, COLUMN_COMMENT, COLUMN_TYPE, IS_NULLABLE
 FROM information_schema.COLUMNS c JOIN information_schema.TABLES t ON t.TABLE_NAME = c.TABLE_NAME  AND t.TABLE_SCHEMA = c.TABLE_SCHEMA WHERE 1=1
-# AND TABLE_SCHEMA = '数据库名'
- AND TABLE_NAME = '表名'
+# AND c.TABLE_SCHEMA = '数据库名'
+ AND c.TABLE_NAME = '表名'
 # AND c.COLUMN_NAME = '列名'
 # AND c.COLUMN_COMMENT = '列注释'

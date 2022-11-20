@@ -28,3 +28,10 @@ import javax.validation.constraints.NotNull;
 ### 表前加库名可以方便后人接手
 
 虽然可以在`information_schema.TABLES`查
+
+
+### datetime(6) 用最 6 位小数或和 java 一样 3 位小数，否则默认没有小数
+
+### 创建时间和更新时间使用数据库自动生生成避免程序与数据库时钟差，创建与更新时不要写这两个字段
+
+### 除非数据量较小时不用 id，否则 InnoDB 用 id 当主键以提升 B+ 树存储效率
