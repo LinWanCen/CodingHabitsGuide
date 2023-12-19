@@ -12,6 +12,7 @@
   </properties>
 ```
 
+
 ### 一般情况下应推送源码和文档，便于依赖方研究如何使用和排查问题
 
 推送源码官方参考：http://maven.apache.org/plugins/maven-source-plugin/usage.html
@@ -34,6 +35,44 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+    </plugins>
+  </build>
+  ...
+</project>
+```
+
+
+### 应在包中包含 Git 信息方便在没有 Git Tag 的时候找到对应版本
+
+打包Git信息官方参考：https://github.com/git-commit-id/git-commit-id-maven-plugin
+
+```xml
+<project>
+  ...
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
+        <version>4.9.9</version>
+        <executions>
+          <execution>
+            <id>git-commit-id</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+          <generateGitPropertiesFile>true</generateGitPropertiesFile>
+          <generateGitPropertiesFilename>${project.build.outputDirectory}/git.json</generateGitPropertiesFilename>
+          <format>json</format>
+          <failOnNoGitDirectory>false</failOnNoGitDirectory>
+          <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
+        </configuration>
       </plugin>
     </plugins>
   </build>

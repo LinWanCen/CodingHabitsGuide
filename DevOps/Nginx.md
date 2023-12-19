@@ -1,8 +1,15 @@
 # Nginx
 
+### 使用 alias 便于本地文件夹可以不用和 location 同名
+- root，实际的路径就是：root值 + location值。
+- alias，实际的路径就是：alias值。
+
 ### 不要用 root 启动避免后面非 root 报 Premature EOF
 
 在 nginx.conf 中配置 user 启动用户
+
+### 修复漏洞更新时不用重启命令
+访问 404 网页看到的仍是旧版
 
 ### 设置 Nginx 的 body 大小避免请求失败
 ```

@@ -43,3 +43,16 @@ main 方法可以继承运行，不算重写（不能`@Override`）
 ### 使用 JDK 自带的类来做解析工具的接口返回
 
 一些常量或类型可以用诸如`Modifier`、`ElementType`的定义
+
+### 不要使用`ClassLoader`获取类路径以免空指针异常
+
+```java
+class A { void fun() {
+    Main.class.getResource(""); // 该类包路径 √
+    Main.class.getResource("/"); // 根路径 √
+    ClassLoader.getSystemResource("");// 类的根路径，classpath file 模式下为 null
+    ClassLoader.getSystemResource("/"); // null
+    Main.class.getClassLoader().getResource(""); // 根路径
+    Main.class.getClassLoader().getResource ("/"); // null
+}}
+```

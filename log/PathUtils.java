@@ -16,7 +16,7 @@ public class PathUtils {
 
     static {
         @SuppressWarnings("ConstantConditions")
-        String path = ClassLoader.getSystemClassLoader().getResource("").getPath();
+        String path = PathUtils.class.getResource("/").getPath();
         try {
             path = URLDecoder.decode(path, "UTF-8");
         } catch (Exception ignored) {
