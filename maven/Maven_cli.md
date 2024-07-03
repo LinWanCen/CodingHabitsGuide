@@ -18,3 +18,19 @@ pom 仓库配置官方文档：https://maven.apache.org/pom.html#repositories
 ```
 -U,--update-snapshots 强制检查远程存储库上是否有 本地缺少的发行版 和 新的快照版
 ```
+
+### 如果不执行测试，编译也同时忽略，提高效率
+```shell
+# 不执行单元测试，也不编译测试类
+-Dmaven.test.skip=true
+# 不执行单元测试，但会编译测试类
+mvn install -DskipTests=true
+```
+```xml
+<properties>
+  <!-- 不执行单元测试，但会编译测试类 -->
+  <skipTests>true</skipTests>
+  <!-- 不执行单元测试，也不编译测试类 -->
+  <maven.test.skip>true</maven.test.skip>
+</properties>
+```

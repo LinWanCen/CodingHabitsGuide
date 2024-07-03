@@ -25,3 +25,7 @@ public class ServerProperties {
 @Value("${server.port}")
 private Integer port;
 ```
+
+# 参数用到自己的 IP 时使用 Spring 变量
+
+${spring.cloud.client.ip-address}:${server.port}

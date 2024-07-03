@@ -1,0 +1,38 @@
+-am	如果指定了项目列表，则还要生成列表所需的项目	--also-make
+-amd	如果指定了项目列表，则还要生成依赖于列表中的项目的项目	--also-make-dependents
+-B	在非交互式（批处理）模式下运行（禁用输出颜色）	--batch-mode
+-b	要使用的生成策略的 ID	--builder
+-C	如果校验和不匹配，则生成失败	--strict-checksums
+-c	如果校验和不匹配，则发出警告	--lax-checksums
+-cpu	无效，仅保留向后兼容	--check-plugin-updates
+-D	定义系统属性	--define
+-e	生成执行错误消息	--errors
+-emp	加密主安全密码	--encrypt-master-password
+-ep	加密服务器密码	--encrypt-password
+-f	强制使用备用 POM 文件（或带有 pom.xml 的目录）	--file
+-fae	之后的构建才失败;允许所有不受影响的构建继续	--fail-at-end
+-ff	在反应堆构建中首次失败时停止	--fail-fast
+-fn	无论项目结果如何，都不要使构建失败	--fail-never
+-gs	全局设置文件的备用路径	--global-settings
+-gt	全局工具链文件的备用路径	--global-toolchains
+-h	显示帮助信息	--help
+-l	所有生成输出将转到的日志文件（禁用输出颜色）	--log-file
+-llr	使用 Maven 2 Legacy Local Repository 行为，即不使用 _remote.repositories。也可以使用 -Dmaven.legacyLocalRepo=true 激活	--legacy-local-repository
+-N	不要递归到子项目中	--non-recursive
+-npr	无效，仅保留向后兼容	--no-plugin-registry
+-npu	无效，仅保留向后兼容	--no-plugin-updates
+-nsu	禁止 SNAPSHOT 更新	--no-snapshot-updates
+-ntp	下载或上传时不显示传输进度	--no-transfer-progress
+-o	脱机工作	--offline
+-P	要激活的配置文件的逗号分隔列表	--activate-profiles
+-pl	要建造的指定反应堆项目的逗号分隔列表，而不是所有项目。项目可以通过 [groupId]：artifactId 或其相对路径指定	--projects
+-q	静音输出 - 仅显示错误	--quiet
+-rf	从指定项目恢复反应器	--resume-from
+-s	用户设置文件的备用路径	--settings
+-t	用户工具链文件的备用路径	--toolchains
+-T	线程数，例如 2.0C，其中 C 是内核乘以	--threads
+-U	强制检查远程存储库上缺少的版本和更新的快照	--update-snapshots
+-up	无效，仅保留向后兼容	--update-plugins
+-v	显示版本信息	--version
+-V	在不停止构建的情况下显示版本信息	--show-version
+-X	生成执行调试输出	--debug

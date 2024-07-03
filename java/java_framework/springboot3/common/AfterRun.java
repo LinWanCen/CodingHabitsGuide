@@ -1,5 +1,6 @@
 package io.github.linwancen.share.common;
 
+import jakarta.servlet.ServletContext;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletContext;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 

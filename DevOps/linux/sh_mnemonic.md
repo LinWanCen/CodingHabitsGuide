@@ -30,6 +30,11 @@ netstat -ano | findstr "端口"
 tasklist | finstr "PID"
 ```
 
+## JSON 格式化
+```shell
+curl "http://localhost:8080/" | python -m json.tool
+```
+
 ## 文件列表
 
 ```sh

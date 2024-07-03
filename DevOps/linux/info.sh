@@ -23,6 +23,10 @@ du -sh *
 du -ch *
 
 # 主机名（命令行左边即 用户名@主机名）
-hostname
+hostnamelog
 
-#
+# IP
+hostname -i
+
+# CentOS 版本
+cat /etc/redhat-release

@@ -1,0 +1,79 @@
+{
+  "types": {
+    "refactor": {
+      "description": "<strong>重构</strong>: 既不修复bug也不增加新功能的变更<br>Changes which neither fix a bug nor add a feature"
+    },
+    "fix": {
+      "description": "<strong>修复bug</strong>: 修复问题的变更<br>Changes which patch a bug"
+    },
+    "feat": {
+      "description": "<strong>新功能</strong>: 引入新功能的变更<br>Changes which introduce a new feature"
+    },
+    "build": {
+      "description": "<strong>打包</strong>: 影响构建系统或外部依赖的变更。<br>例如：gulp, broccoli, npm<br>Changes which affect the build system or external dependencies.<br>Example scopes: gulp, broccoli, npm"
+    },
+    "chore": {
+      "description": "<strong>构建过程或辅助工具的变动</strong>: 不直接影响用户的变更<br>Changes which are not user-facing"
+    },
+    "style": {
+      "description": "<strong>代码格式</strong>: 不影响代码逻辑的变更，如空格、格式化、缺失分号等<br>Changes which do not affect code logic, such as whitespaces, formatting, missing semicolons"
+    },
+    "test": {
+      "description": "<strong>增加测试</strong>: 添加缺失的测试或修复现有测试的变更<br>Changes which add missing tests or fix existing ones"
+    },
+    "docs": {
+      "description": "<strong>文档注释</strong>: 影响文档的变更<br>Changes which affect documentation"
+    },
+    "perf": {
+      "description": "<strong>性能优化</strong>: 提升性能的变更<br>Changes which improve performance"
+    },
+    "ci": {
+      "description": "<strong>持续集成</strong>: 影响CI配置文件和脚本的变更。<br>例如：travis, circle, browser-stack, sauce-labs<br>Changes which affect CI configuration files and scripts.<br>Example scopes: travis, circle, browser-stack, sauce-labs"
+    },
+    "revert": {
+      "description": "<strong>回退</strong>: 撤销之前提交的变更<br>Changes which revert a previous commit"
+    }
+  },
+  "footerTypes": [
+    {
+      "name": "BREAKING-CHANGE",
+      "description": "<strong>破坏性变更</strong>: 提交引入了破坏性API变更<br>The commit introduces breaking API changes"
+    },
+    {
+      "name": "Closes",
+      "description": "<strong>关闭问题</strong>: 提交关闭了问题或拉取请求<br>The commit closes issues or pull requests"
+    },
+    {
+      "name": "Implements",
+      "description": "<strong>实现功能</strong>: 提交实现了功能<br>The commit implements features"
+    },
+    {
+      "name": "Author",
+      "description": "<strong>作者</strong>: 提交的作者<br>The commit's author"
+    },
+    {
+      "name": "Co-authored-by",
+      "description": "<strong>共同作者</strong>: 指定的人共同撰写了提交的变更<br>The specified person co-authored the commit's changes"
+    },
+    {
+      "name": "Signed-off-by",
+      "description": "<strong>签名</strong>: 签名可能证明提交者有权根据项目许可证提交工作，或同意某些贡献者声明，如开发者证书起源<br>A signoff may certify that the committer has the rights to submit the work under the project's license or agrees to some contributor representation, such as a Developer Certificate of Origin"
+    },
+    {
+      "name": "Acked-by",
+      "description": "<strong>认可</strong>: 指定的人喜欢提交的变更<br>The specified person liked the commit's changes"
+    },
+    {
+      "name": "Reviewed-by",
+      "description": "<strong>审核</strong>: 指定的人审核并完全满意提交的变更<br>The specified person reviewed and is completely satisfied with the commit's changes"
+    },
+    {
+      "name": "Tested-by",
+      "description": "<strong>测试</strong>: 指定的人应用了提交的变更并发现它们达到了预期效果<br>The specified person applied the commit's changes and found them to have the desired effect"
+    },
+    {
+      "name": "Refs",
+      "description": "<strong>引用</strong>: 提交通过其哈希ID引用了另一个提交。<br>对于多个哈希ID，使用逗号作为分隔符<br>The commit references another commit by its hash ID.<br>For multiple hash IDs, use a comma as separator"
+    }
+  ]
+}

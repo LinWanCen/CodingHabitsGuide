@@ -36,7 +36,7 @@ set global character_set_client = utf8mb4;
 set global character_set_connection = utf8mb4;
 set global character_set_results = utf8mb4;
 
-create database if not exists `db1` /*!40100 default character set utf8mb4 */;
+create database if not exists `db1` /*!40100 default character set utf8mb4 collate utf8mb4_bin */;
 
 -- show create table db1_table0;
 drop table if exists `db1_table0`;

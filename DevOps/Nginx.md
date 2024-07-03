@@ -1,5 +1,7 @@
 # Nginx
 
+配置结构：events/http/mail/stream -> server -> location
+
 ### 使用 alias 便于本地文件夹可以不用和 location 同名
 - root，实际的路径就是：root值 + location值。
 - alias，实际的路径就是：alias值。
@@ -29,6 +31,15 @@ client_max_body_size 8m;
 ```
 https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
 
+spring 配置
+```yml
+spring:
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 10MB
+```
+
 ### 设置 X-Forwarded-For 以便服务能根据请求头获取到请求 IP
 
 最外层 Nginx：
@@ -54,12 +65,12 @@ https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header
 
 一级成员
 
-contexts | 说明
----      | ---
-events   | 一般连接处理
-http     | HTTP 流量
-mail     | 邮件流量
-stream   | TCP 和 UDP 流量
+| contexts | 说明           |
+|----------|--------------|
+| events   | 一般连接处理       |
+| http     | HTTP 流量      |
+| mail     | 邮件流量         |
+| stream   | TCP 和 UDP 流量 |
 
     server {
         # configuration of HTTP virtual server 1       
